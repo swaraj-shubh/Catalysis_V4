@@ -7,7 +7,7 @@ export default function Footer() {
           
           <div className="w-16 h-16 bg-white rounded-full border-[6px] border-black flex justify-center items-center">
             
-            <div className="w-8 h-8 bg-white rounded-full border-4 border-black shadow-inner"></div>
+            <div className="w-8 h-8 bg-white rounded-full border-7 border-black shadow-inner"></div>
           </div>
         </div>
       </div>
@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="bg-white text-gray-800 pt-16 pb-12 text-center border-t-[3px] border-black">
         <div className="max-w-7xl mx-auto">
           <p className="font-black text-xl tracking-tight">
-            © 2026 CATALYSIS. ALL RIGHTS RESERVED.
+            © Copyright Catalysis 2026. All rights reserved.
           </p>
         </div>
       </div>

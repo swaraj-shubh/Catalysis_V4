@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/common/Container";
-import SectionHeader from "@/components/common/SectionHeader";
+import Image from "next/image";
 import { useState } from "react";
 
 const qna = [
@@ -12,15 +12,15 @@ const qna = [
   },
   {
     question: "Can I join multiple events?",
-    answer: "Yes, you can participate in multiple events.",
+    answer: "Yes, you can participate in multiple events. Our schedule is designed to allow participants to explore different tracks.",
   },
   {
     question: "Will certificates be provided?",
-    answer: "Yes, all participants will receive certificates.",
+    answer: "Yes, all participants will receive digital certificates of participation, and winners will receive merit certificates.",
   },
   {
     question: "How do I register?",
-    answer: "You can register using the register button on the homepage.",
+    answer: "You can register using the register button on the homepage. Simply fill out the form and you'll receive a confirmation email.",
   },
 ];
 
@@ -28,62 +28,81 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="faq" className="py-20 bg-[#FFEEF0]">
+    <section id="faq" className="py-24 bg-[#FFEEF0]">
       <Container>
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-16 items-start">
+          
+          <div className="flex flex-col">
+            <div className="mb-6">
+               <div className="inline-block border border-black rounded-full px-5 py-1 bg-white text-sm font-medium mb-6">
+                 FAQs
+               </div>
+               
+               <div className="mb-6">
+                 <Image 
+                    src="/faq.png" 
+                    alt="Frequently Asked Questions" 
+                    width={500} 
+                    height={100}
+                    className="object-contain"
+                 />
+               </div>
 
-          <div>
-            <SectionHeader
-              label="FAQs"
-              title="Frequently Asked Questions"
-              subtitle="Don't hesitate to reach out with any questions you might have, whether they're big or small. We're always ready and eager to assist you with anything you need."
-            />
+               <p className="text-[#3b0a1e] font-medium text-lg leading-relaxed mb-10">
+                Don't hesitate to reach out with any questions you might have, whether they're big or small. We're always ready and eager to assist you with anything you need, ensuring you get the support and answers you're looking for every step of the way!
+               </p>
+            </div>
 
-            <div className="mt-6 border border-black/30 rounded-2xl p-4 flex items-center justify-between bg-white">
+            <div className="relative bg-white border-2 border-black rounded-[2rem] p-6 h-36 flex flex-col justify-between shadow-sm">
               <input
                 placeholder="Type message..."
-                className="bg-transparent outline-none w-full text-sm"
+                className="bg-transparent outline-none w-full text-lg placeholder:text-gray-400 font-medium"
               />
-
-              <button className="ml-4 bg-red-500 text-white text-xs px-4 py-2 rounded-lg hover:bg-red-600">
-                SEND MESSAGE
-              </button>
+              <div className="flex justify-end">
+                <button className="bg-[#E3242B] text-white font-bold px-6 py-3 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:shadow-none transition-all active:scale-95">
+                  SEND MESSAGE
+                </button>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
-
+          <div className="flex flex-col gap-5">
             {qna.map((item, i) => {
               const isOpen = openIndex === i;
 
               return (
                 <div
                   key={i}
-                  className={`rounded-xl overflow-hidden border ${
-                    isOpen
-                      ? "bg-red-500 text-white"
-                      : "bg-[#f1f1f1] text-black"
+                  className={`rounded-3xl overflow-hidden border-2 border-black transition-all duration-300 ${
+                    isOpen ? "shadow-md" : "bg-white"
                   }`}
                 >
                   <div
-                    onClick={() =>
-                      setOpenIndex(isOpen ? -1 : i)
-                    }
-                    className="flex justify-between items-center px-4 py-3 cursor-pointer font-medium"
+                    onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                    className={`flex justify-between items-center px-6 py-5 cursor-pointer transition-colors ${
+                      isOpen ? "bg-[#E3242B] text-white border-b-2 border-black" : "text-[#3b0a1e]"
+                    }`}
                   >
-                    <span>{item.question}</span>
-                    <span>{isOpen ? "−" : "+"}</span>
+                    <span className="text-2xl font-black tracking-tight font-['Gliker']">
+                      {item.question}
+                    </span>
+                    <span className="text-3xl font-bold">
+                      {isOpen ? "−" : "+"}
+                    </span>
                   </div>
 
-                  {isOpen && (
-                    <div className="bg-white text-black px-4 py-3 text-sm">
+                  <div 
+                    className={`bg-white text-[#3b0a1e] transition-all duration-300 ease-in-out ${
+                      isOpen ? "max-h-40 py-6 px-6 opacity-100" : "max-h-0 py-0 px-6 opacity-0"
+                    }`}
+                  >
+                    <p className="text-lg font-medium leading-relaxed">
                       {item.answer}
-                    </div>
-                  )}
+                    </p>
+                  </div>
                 </div>
               );
             })}
-
           </div>
         </div>
       </Container>
