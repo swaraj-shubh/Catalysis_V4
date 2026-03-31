@@ -30,8 +30,8 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ message: "Registration successful!" }, { status: 201 });
-  } catch (err: any) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

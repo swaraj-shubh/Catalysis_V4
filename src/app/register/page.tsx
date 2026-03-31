@@ -4,7 +4,17 @@ import React, { useState } from "react";
 const TEAM_EVENTS = ["technoseek", "coding_relay"];
 const ALL_EVENTS = ["technoseek", "typemaster", "clash_royale", "coding_relay", "dsa_smackdown", "pitch_perfect"];
 
-const INITIAL_MEMBER = { name: "", usn: "", email: "", phone: "", semester: "", branch: "" };
+// Interface for Member Data
+interface MemberData {
+  name: string;
+  usn: string;
+  email: string;
+  phone: string;
+  semester: string | number;
+  branch: string;
+}
+
+const INITIAL_MEMBER: MemberData = { name: "", usn: "", email: "", phone: "", semester: "", branch: "" };
 
 export default function RegisterPage() {
   const [event, setEvent] = useState("");
@@ -22,7 +32,6 @@ export default function RegisterPage() {
     e.preventDefault();
     setLoading(true);
 
-    // Ensure semester is a number before sending
     const payload = {
       event,
       ...formData,
@@ -46,12 +55,12 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-black text-white p-6 md:p-10">
-      <form onSubmit={handleSubmit} className="max-w-3xl mx-auto space-y-8 bg-gray-900 p-8 rounded-2xl shadow-2xl">
+      <form onSubmit={handleSubmit} className="max-w-3xl mx-auto space-y-8 bg-gray-900 p-8 rounded-2xl">
         <h1 className="text-3xl font-bold border-b border-gray-800 pb-4 text-blue-500">Event Registration</h1>
         
         <div className="space-y-2">
           <label className="text-sm text-gray-400">Choose your game</label>
-          <select className="w-full p-4 bg-gray-800 rounded-lg outline-none focus:ring-2 focus:ring-blue-600" 
+          <select className="w-full p-4 bg-gray-800 rounded-lg outline-none" 
             onChange={(e) => setEvent(e.target.value)} required>
             <option value="">-- Select Event --</option>
             {ALL_EVENTS.map(ev => <option key={ev} value={ev}>{ev.toUpperCase().replace('_', ' ')}</option>)}
@@ -61,25 +70,25 @@ export default function RegisterPage() {
         {isTeamEvent && (
           <div className="space-y-2">
             <label className="text-sm text-gray-400">Team Name</label>
-            <input className="w-full p-4 bg-gray-800 rounded-lg outline-none focus:ring-2 focus:ring-blue-600" 
+            <input className="w-full p-4 bg-gray-800 rounded-lg" 
               placeholder="Enter team name"
               onChange={(e) => setFormData({...formData, team_name: e.target.value})} required />
           </div>
         )}
 
         <MemberInput title="Member 1 (Lead)" val={formData.member1} 
-          set={(data: any) => setFormData({...formData, member1: data})} />
+          set={(data: MemberData) => setFormData({...formData, member1: data})} />
 
         {isTeamEvent && (
           <>
             <MemberInput title="Member 2" val={formData.member2} 
-              set={(data: any) => setFormData({...formData, member2: data})} />
+              set={(data: MemberData) => setFormData({...formData, member2: data})} />
             <MemberInput title="Member 3 (Optional)" val={formData.member3} required={false}
-              set={(data: any) => setFormData({...formData, member3: data})} />
+              set={(data: MemberData) => setFormData({...formData, member3: data})} />
           </>
         )}
 
-        <button className="w-full bg-blue-600 p-4 rounded-xl font-bold text-lg hover:bg-blue-500 transition-all disabled:opacity-50" 
+        <button className="w-full bg-blue-600 p-4 rounded-xl font-bold text-lg disabled:opacity-50" 
           disabled={loading || !event}>
           {loading ? "Registering..." : "Submit Registration"}
         </button>
@@ -88,8 +97,16 @@ export default function RegisterPage() {
   );
 }
 
-function MemberInput({ title, val, set, required = true }: any) {
-  const update = (field: string, value: any) => set({ ...val, [field]: value });
+// Props interface for the component
+interface MemberInputProps {
+  title: string;
+  val: MemberData;
+  set: (data: MemberData) => void;
+  required?: boolean;
+}
+
+function MemberInput({ title, val, set, required = true }: MemberInputProps) {
+  const update = (field: keyof MemberData, value: string) => set({ ...val, [field]: value });
   return (
     <div className="p-6 border border-gray-800 rounded-xl bg-gray-900/50 space-y-4">
       <p className="text-blue-400 font-bold text-lg">{title}</p>
@@ -98,8 +115,8 @@ function MemberInput({ title, val, set, required = true }: any) {
         <input className="p-3 bg-gray-800 rounded-md" placeholder="USN" required={required} value={val.usn} onChange={e => update("usn", e.target.value)} />
         <input className="p-3 bg-gray-800 rounded-md" placeholder="Email" type="email" required={required} value={val.email} onChange={e => update("email", e.target.value)} />
         <input className="p-3 bg-gray-800 rounded-md" placeholder="Phone" required={required} value={val.phone} onChange={e => update("phone", e.target.value)} />
-        <input className="p-3 bg-gray-800 rounded-md" placeholder="Semester (Number)" type="number" required={required} value={val.semester} onChange={e => update("semester", e.target.value)} />
-        <input className="p-3 bg-gray-800 rounded-md" placeholder="Branch (e.g. CSE)" required={required} value={val.branch} onChange={e => update("branch", e.target.value)} />
+        <input className="p-3 bg-gray-800 rounded-md" placeholder="Semester" type="number" required={required} value={val.semester} onChange={e => update("semester", e.target.value)} />
+        <input className="p-3 bg-gray-800 rounded-md" placeholder="Branch" required={required} value={val.branch} onChange={e => update("branch", e.target.value)} />
       </div>
     </div>
   );

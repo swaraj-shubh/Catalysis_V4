@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
 export type EventName = "technoseek" | "typemaster" | "clash_royale" | "coding_relay" | "dsa_smackdown" | "pitch_perfect";
 
@@ -27,7 +27,7 @@ const MemberSchema = new Schema<Member>({
   usn: { type: String },
   email: { type: String },
   phone: { type: String },
-  semester: { type: Number }, // Changed to Number
+  semester: { type: Number },
   branch: { type: String },
 });
 
