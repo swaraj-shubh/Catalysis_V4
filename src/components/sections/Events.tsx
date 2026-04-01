@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Container from "@/components/common/Container";
 import SectionHeader from "@/components/common/SectionHeader";
 import { Button } from "@/components/ui/button";
@@ -17,9 +18,11 @@ export default function Events() {
               subtitle="Explore an extensive variety of events designed to inspire and engage innovators of all kinds, offering unique opportunities to learn, connect, and grow in your creative journey."
             />
 
-            <Button className="mt-6 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl">
-              VIEW ALL EVENTS
-            </Button>
+            <Link href = "/events">
+              <Button className="mt-6 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl">
+                VIEW ALL EVENTS
+              </Button>
+            </Link>
           </div>
 
 

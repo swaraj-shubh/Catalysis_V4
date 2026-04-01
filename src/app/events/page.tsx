@@ -1,14 +1,15 @@
-import ArenaCard from "@/components/ui/arenacard";
+import EventCard from "@/components/ui/eventcard";
+import ArenaPageFooter from "@/components/layout/ArenaPageFooter";
 
 export default function EventsPage() {
 
     const ARENAS_DATA = [
-        { name: "PITCH ARENA", type: "STRATEGY BUILDER", image: "/pokemons/charizard.png", color: "#FFD1D1", detailsLink: "/events/pitch" },
-        { name: "CODE BATTLE", type: "DEVELOPER EXTRA", image: "/pokemons/ivysaur.png", color: "#D1FFE9", detailsLink: "/events/code" },
-        { name: "PITCH ARENA", type: "STRATEGY BUILDER", image: "/pokemons/charmander.png", color: "#FFD1D1", detailsLink: "/events/pitch" },
-        { name: "CODE BATTLE", type: "DEVELOPER EXTRA", image: "/pokemons/venusaur.png", color: "#D1FFE9", detailsLink: "/events/code" },
-        { name: "PITCH ARENA", type: "STRATEGY BUILDER", image: "/pokemons/wartortle.png", color: "#FFD1D1", detailsLink: "/events/pitch" },
-        { name: "CODE BATTLE", type: "DEVELOPER EXTRA", image: "/pokemons/charmeleon.png", color: "#D1FFE9", detailsLink: "/events/code" },
+        { name: "DSA SMACKDOWN", type: "STRATEGY TYPE", image: "/pokemons/charizard.svg", color: "#FFD1D1", detailsLink: "/events/pitch", top: "-top-[25px]", },
+        { name: "PITCH PERFECT", type: "STRATEGY TYPE", image: "/pokemons/bulbasaur.png", color: "#D1FFE9", detailsLink: "/events/code" },
+        { name: "CODING RELAY", type: "STRATEGY TYPE", image: "/pokemons/charmeleon.svg", color: "#FFD1D1", detailsLink: "/events/pitch", top: "-top-[25px]", },
+        { name: "TECHNOSEEK", type: "STRATEGY TYPE", image: "/pokemons/venusaur.svg", color: "#D1FFE9", detailsLink: "/events/code", top: "-top-[10px]", },
+        { name: "CLASH ROYALE", type: "STRATEGY TYPE", image: "/pokemons/wartortle.svg", color: "#FFD1D1", detailsLink: "/events/pitch", top: "-top-[20px]", },
+        { name: "TYPEMASTER", type: "STRATEGY TYPE", image: "/pokemons/blastoise.svg", color: "#D1FFE9", detailsLink: "/events/code" },
         ];
 
   return (
@@ -43,11 +44,13 @@ export default function EventsPage() {
         Each event is a unique challenge — pick your path wisely.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-24 mt-20 px-6 max-w-7xl">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-24 mt-20 px-6 max-w-7xl">
         {ARENAS_DATA.map((arena, index) => (
-          <ArenaCard key={index} arena={arena} />
+            <EventCard key={index} event={arena} />
         ))}
-      </div>
+        </div>
+
+        <ArenaPageFooter ></ArenaPageFooter>
     </main>
   );
 }
