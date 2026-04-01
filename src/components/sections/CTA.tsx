@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function CTA() {
   return (
     <section id="cta" className="relative pt-32 pb-0 bg-[#f5eaea]"> 
@@ -11,39 +13,47 @@ export default function CTA() {
 
         <div className="relative bg-[#dd273e] text-white py-20 px-6 rounded-t-[3rem] border-t-2 border-black flex flex-col items-center text-center z-30">
           
-          <img src="/catalysis.png" alt="Catalysis" className="transition-transform hover:scale-105 w-48 mb-8" />
+          <Image src="/catalysis.png" alt="Catalysis" width={192} height={80} className="transition-transform hover:scale-105 mb-8 w-auto h-auto" />
 
           <div className="mb-6">
-            <img 
+            <Image 
               src="/last/heading-phone.png" 
               alt="Ready to Be Part of Catalysis?" 
+              width={400}
+              height={100}
               className="block md:hidden max-w-full h-auto" 
             />
-            <img 
+            <Image 
               src="/last/heading.png" 
               alt="Ready to Be Part of Catalysis?" 
-              className="hidden md:block max-w-full h-auto md:h-44" 
+              width={600}
+              height={176}
+              className="hidden md:block max-w-full h-auto md:h-44 w-auto" 
             />
           </div>
 
           <p className="mb-12 text-lg md:text-xl font-medium opacity-100 max-w-xl">
-            Don't miss your chance to innovate, compete, and win.
+            Don&apos;t miss your chance to innovate, compete, and win.
           </p>
 
           <div className="relative group cursor-pointer transition-transform active:scale-95">
             <div className="absolute top-4 left-0 z-10">
-              <img 
+              <Image 
                 src="/last/register-shadow.png" 
                 alt="shadow" 
-                className="h-16 md:h-20" 
+                width={240}
+                height={80}
+                className="h-16 md:h-20 w-auto" 
               />
             </div>
 
             <div className="relative z-20 hover:-translate-y-1 transition-transform duration-200">
-              <img 
+              <Image 
                 src="/last/register.png" 
                 alt="Register Now" 
-                className="h-16 md:h-20" 
+                width={240}
+                height={80}
+                className="h-16 md:h-20 w-auto" 
               />
             </div>
           </div>

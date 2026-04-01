@@ -49,7 +49,7 @@ export default function FAQ() {
                </div>
 
                <p className="text-[#3b0a1e] font-medium text-lg leading-relaxed mb-10">
-                Don't hesitate to reach out with any questions you might have, whether they're big or small. We're always ready and eager to assist you with anything you need, ensuring you get the support and answers you're looking for every step of the way!
+                Don&apos;t hesitate to reach out with any questions you might have, whether they&apos;re big or small. We&apos;re always ready and eager to assist you with anything you need, ensuring you get the support and answers you&apos;re looking for every step of the way!
                </p>
             </div>
 
