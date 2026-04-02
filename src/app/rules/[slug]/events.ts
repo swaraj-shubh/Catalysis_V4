@@ -16,6 +16,9 @@ export const eventData: Record<string, EventDetails> = {
   "clash-royale": {
     title: "Clash Royale",
     subtitle: "Battle your way to the throne and prove your ultimate gaming supremacy",
+    image: "/pokemons/arceus.svg",
+    heroColor: "#F5E6A3",
+    selectionColor: "#E8D580",
     tags: ["Mobile Gaming", "Strategy", "Tournament"],
     description: "Coordinate, build your perfect deck, and outsmart your opponents in this fast-paced mobile strategy game. Prove your tactical synergy to claim the title of campus champions.",
     rules: [
@@ -30,18 +33,21 @@ export const eventData: Record<string, EventDetails> = {
       "🎖️ MVP Award for top player"
     ],
     schedule: [
-      "Date: Day 2", 
+      "Date: Day 2",
       "Time: 01:30 PM – 03:30 PM"
     ],
     requirements: [
-      "Valid Supercell account", 
-      "Stable internet connection", 
+      "Valid Supercell account",
+      "Stable internet connection",
       "- Student ID proof"
     ]
   },
   "dsa-smackdown": {
     title: "DSA Smackdown",
     subtitle: "Where logic meets speed in the ultimate coding showdown",
+    image: "/pokemons/alakazam.svg",
+    heroColor: "#F5D76E",
+    selectionColor: "#E8C84A",
     tags: ["Data Structures", "Optimization", "Logic"],
     description: "Put your algorithmic thinking to the ultimate test. Solve complex Data Structure and Algorithm problems under a strict time limit. Efficiency, memory, and execution speed are your only allies.",
     rules: [
@@ -60,14 +66,17 @@ export const eventData: Record<string, EventDetails> = {
       "Day 3 Batch: 10:15 AM – 12:30 PM"
     ],
     requirements: [
-      "Active HackerRank or LeetCode account", 
-      "Bring your own laptop (recommended)", 
+      "Active HackerRank or LeetCode account",
+      "Bring your own laptop (recommended)",
       "- Student ID proof"
     ]
   },
   "typemaster": {
     title: "Typemaster",
     subtitle: "Unleash your typing speed and accuracy like never before",
+    image: "/pokemons/rayquaza.svg",
+    heroColor: "#83BD90",
+    selectionColor: "#83BD90",
     tags: ["Speed Demon", "Precision Master", "Combo Builder"],
     description: "Typemaster is a high-speed typing competition designed to test your accuracy, speed, and consistency. Participants will compete in multiple rounds where precision and quick reflexes are the key to survival.",
     rules: [
@@ -83,18 +92,21 @@ export const eventData: Record<string, EventDetails> = {
       "🎖️ Participation Certificates for all"
     ],
     schedule: [
-      "Date: Day 1", 
+      "Date: Day 1",
       "Time: 01:30 PM – 03:30 PM"
     ],
     requirements: [
-      "Basic typing skills", 
-      "Student ID / Registration proof", 
+      "Basic typing skills",
+      "Student ID / Registration proof",
       "- Punctuality"
     ]
   },
   "pitch-wala": {
     title: "Pitch Wala",
     subtitle: "Turn your ideas into impact with the power of persuasion",
+    image: "/pokemons/jigglypuff.svg",
+    heroColor: "#FFB6C1",
+    selectionColor: "#FF9AAF",
     tags: ["Ideation", "Business Model", "Presentation"],
     description: "Got the next billion-dollar idea? Present your startup pitch to our panel of judges. You will be evaluated on innovation, market feasibility, revenue model, and overall presentation skills.",
     rules: [
@@ -109,18 +121,21 @@ export const eventData: Record<string, EventDetails> = {
       "🎖️ Potential Incubation/Mentorship opportunities"
     ],
     schedule: [
-      "Date: Day 3", 
+      "Date: Day 3",
       "Time: 01:30 PM – 02:30 PM"
     ],
     requirements: [
-      "Pitch Deck (.PPT or .PDF) submitted prior to event", 
-      "Formal or Smart Casual attire", 
+      "Pitch Deck (.PPT or .PDF) submitted prior to event",
+      "Formal or Smart Casual attire",
       "- Student ID proof"
     ]
   },
   "technoseek": {
     title: "Technoseek",
     subtitle: "Hunt the tech, solve the clues, and conquer the challenge",
+    image: "/pokemons/zoroark.svg",
+    heroColor: "#C45B5B",
+    selectionColor: "#C45B5B",
     tags: ["Scavenger Hunt", "Tech Puzzles", "Teamwork"],
     description: "Navigate through mind-bending technical puzzles and clues hidden across the campus. Combine your technical knowledge with quick thinking to be the first team to crack the final code.",
     rules: [
@@ -135,18 +150,21 @@ export const eventData: Record<string, EventDetails> = {
       "🎖️ Participation Certificates for all"
     ],
     schedule: [
-      "Date: Day 1", 
+      "Date: Day 1",
       "Time: 10:15 AM – 12:30 PM"
     ],
     requirements: [
-      "At least one fully charged smartphone per team", 
-      "QR Code Scanner app installed", 
+      "At least one fully charged smartphone per team",
+      "QR Code Scanner app installed",
       "- Student ID proof"
     ]
   },
   "code-relay": {
     title: "Code Relay",
     subtitle: "Pass the logic, carry the code, and race to victory together",
+    image: "/pokemons/ditto.svg",
+    heroColor: "#B39DDB",
+    selectionColor: "#B39DDB",
     tags: ["Algorithms", "Team Sync", "Endurance"],
     description: "A fast-paced tag-team coding competition. One team member starts coding a solution, and when the buzzer rings, the next member must take over exactly where they left off without communicating!",
     rules: [
@@ -161,12 +179,12 @@ export const eventData: Record<string, EventDetails> = {
       "🎖️ Participation Certificates for all"
     ],
     schedule: [
-      "Round 1: Day 1 | 02:30 PM – 03:30 PM", 
+      "Round 1: Day 1 | 02:30 PM – 03:30 PM",
       "Finals: Day 2 | 01:30 PM – 03:30 PM"
     ],
     requirements: [
-      "Strong logic fundamentals", 
-      "Familiarity with C++, Java, or Python", 
+      "Strong logic fundamentals",
+      "Familiarity with C++, Java, or Python",
       "- Student ID proof"
     ]
   }

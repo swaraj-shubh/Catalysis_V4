@@ -12,7 +12,6 @@ interface EventCardProps {
     width?: number;
     height?: number;
     tags?: string[];
-    detailsLink?: string;
   };
 }
 

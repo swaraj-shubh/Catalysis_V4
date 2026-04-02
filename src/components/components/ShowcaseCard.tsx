@@ -86,7 +86,7 @@ export default function ShowcaseCard({ event, className = "" }: ShowcaseCardProp
             marginBottom: "calc(var(--card-w) * 0.02)",
           }}
         >
-          {event.tags.map((tag, i) => (
+          {event.showcaseTags.map((tag, i) => (
             <span
               key={i}
               className="text-black font-bold rounded-full border text-center"
