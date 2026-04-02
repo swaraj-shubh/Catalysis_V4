@@ -110,6 +110,13 @@ function Badge({
   );
 }
 
+const FLOAT_CLASSES = [
+  "animate-float-1",
+  "animate-float-2",
+  "animate-float-3",
+  "animate-float-4",
+];
+
 const MOBILE_BADGES: BadgeData[] = [
   { top: "5%",  left: "48%", label: "Pitch",        content: "STRATEGY TYPE", icon: "/about2/pitch.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555" },
   { top: "20%", left: "14%", label: "DSA",           content: "PSYCHIC TYPE",  icon: "/about2/dsa.png",          primaryColor: "#4A9CC4", secondaryColor: "#2A6F9A" },
