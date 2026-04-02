@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import Container from "@/components/common/Container";
+import { useInView } from "@/hooks/useInView";
 
 interface BadgeProps {
   label: string;
@@ -111,23 +113,23 @@ function Badge({
 }
 
 const MOBILE_BADGES: BadgeData[] = [
-  { top: "5%",  left: "48%", label: "Pitch",        content: "STRATEGY TYPE", icon: "/about2/pitch.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555" },
-  { top: "20%", left: "14%", label: "DSA",           content: "PSYCHIC TYPE",  icon: "/about2/dsa.png",          primaryColor: "#4A9CC4", secondaryColor: "#2A6F9A" },
-  { top: "20%", left: "82%", label: "Clash Royale",      content: "BATTLE TYPE",   icon: "/about2/valorent.png",     primaryColor: "#5BBF6A", secondaryColor: "#2E8A3E" },
-  { top: "50%", left: "14%", label: "Technoseek",    content: "ELECTRIC TYPE", icon: "/about2/technoseek.png",   primaryColor: "#A8CC55", secondaryColor: "#72981E" },
-  { top: "50%", left: "82%", label: "Typemaster",    content: "SPEED TYPE",    icon: "/about2/typemaster.png",   primaryColor: "#B86ED4", secondaryColor: "#8A3BAF" },
-  { top: "68%", left: "27%", label: "Coding Relay",  content: "TEAM TYPE",     icon: "/about2/coding-relay.png", primaryColor: "#F5943A", secondaryColor: "#C8620E" },
-  { top: "68%", left: "68%", label: "UI/UX Design",  content: "CREATIVE TYPE", icon: "/about2/ui-ux.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555" },
+  { top: "5%",  left: "48%", label: "Pitch Wala",      content: "STRATEGY TYPE", icon: "/about2/pitch.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555" },
+  { top: "20%", left: "14%", label: "DSA Smackdown",  content: "PSYCHIC TYPE",  icon: "/about2/dsa.png",          primaryColor: "#4A9CC4", secondaryColor: "#2A6F9A" },
+  { top: "20%", left: "82%", label: "Clash Royale",   content: "BATTLE TYPE",   icon: "/about2/valorent.png",     primaryColor: "#5BBF6A", secondaryColor: "#2E8A3E" },
+  { top: "50%", left: "14%", label: "Technoseek",     content: "ELECTRIC TYPE", icon: "/about2/technoseek.png",   primaryColor: "#A8CC55", secondaryColor: "#72981E" },
+  { top: "50%", left: "82%", label: "Typemaster",     content: "SPEED TYPE",    icon: "/about2/typemaster.png",   primaryColor: "#B86ED4", secondaryColor: "#8A3BAF" },
+  { top: "68%", left: "27%", label: "Code Relay",     content: "TEAM TYPE",     icon: "/about2/coding-relay.png", primaryColor: "#F5943A", secondaryColor: "#C8620E" },
+  { top: "68%", left: "68%", label: "Pitch Wala",     content: "CREATIVE TYPE", icon: "/about2/ui-ux.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555" },
 ];
 
 const BADGES: BadgeData[] = [
-  { top: "11%", left: "45%", label: "Pitch",        content: "STRATEGY TYPE", icon: "/about2/pitch.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555" },
-  { top: "24%", left: "25%", label: "DSA",           content: "PSYCHIC TYPE",  icon: "/about2/dsa.png",          primaryColor: "#4A9CC4", secondaryColor: "#2A6F9A" },
-  { top: "24%", left: "78%", label: "Clash Royale",      content: "BATTLE TYPE",   icon: "/about2/valorent.png",     primaryColor: "#5BBF6A", secondaryColor: "#2E8A3E" },
-  { top: "37%", left: "5%",  label: "Technoseek",    content: "ELECTRIC TYPE", icon: "/about2/technoseek.png",   primaryColor: "#A8CC55", secondaryColor: "#72981E" },
-  { top: "37%", left: "58%", label: "Typemaster",    content: "SPEED TYPE",    icon: "/about2/typemaster.png",   primaryColor: "#B86ED4", secondaryColor: "#8A3BAF" },
-  { top: "50%", left: "38%", label: "Coding Relay",  content: "TEAM TYPE",     icon: "/about2/coding-relay.png", primaryColor: "#F5943A", secondaryColor: "#C8620E" },
-  { top: "63%", left: "58%", label: "UI/UX Design",  content: "CREATIVE TYPE", icon: "/about2/ui-ux.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555" },
+  { top: "11%", left: "45%", label: "Pitch Wala",      content: "STRATEGY TYPE", icon: "/about2/pitch.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555" },
+  { top: "24%", left: "25%", label: "DSA Smackdown",  content: "PSYCHIC TYPE",  icon: "/about2/dsa.png",          primaryColor: "#4A9CC4", secondaryColor: "#2A6F9A" },
+  { top: "24%", left: "78%", label: "Clash Royale",   content: "BATTLE TYPE",   icon: "/about2/valorent.png",     primaryColor: "#5BBF6A", secondaryColor: "#2E8A3E" },
+  { top: "37%", left: "5%",  label: "Technoseek",     content: "ELECTRIC TYPE", icon: "/about2/technoseek.png",   primaryColor: "#A8CC55", secondaryColor: "#72981E" },
+  { top: "37%", left: "58%", label: "Typemaster",     content: "SPEED TYPE",    icon: "/about2/typemaster.png",   primaryColor: "#B86ED4", secondaryColor: "#8A3BAF" },
+  { top: "50%", left: "38%", label: "Code Relay",     content: "TEAM TYPE",     icon: "/about2/coding-relay.png", primaryColor: "#F5943A", secondaryColor: "#C8620E" },
+  { top: "63%", left: "58%", label: "Pitch Wala",     content: "CREATIVE TYPE", icon: "/about2/ui-ux.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555" },
 ];
 
 const LINES: LineData[] = [
@@ -286,24 +288,32 @@ function AboutRight() {
 
 
 export default function About() {
+  const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.1 });
+  const inView = isInView ? "in-view" : "";
+
   return (
     <section
+      ref={sectionRef}
       id="about"
       className="relative w-full bg-[#FFEEF0] py-2 md:py-1 overflow-hidden"
     >
       <Container>
 
         <div className="block md:hidden space-y-10">
-          <AboutLeft />
-          <AboutMobile />
+          <div className={`reveal reveal-left ${inView}`}>
+            <AboutLeft />
+          </div>
+          <div className={`reveal reveal-scale ${inView} reveal-delay-2`}>
+            <AboutMobile />
+          </div>
         </div>
 
         <div className="hidden md:grid grid-cols-3 gap-8 items-center">
-          <div className="col-span-1">
+          <div className={`col-span-1 reveal reveal-left ${inView}`}>
             <AboutLeft />
           </div>
 
-          <div className="flex justify-center z-20">
+          <div className={`flex justify-center z-20 reveal reveal-scale ${inView} reveal-delay-2`}>
             <Image
               src="/hero/Pokeball.png"
               alt="Large Central Pokeball"
@@ -313,7 +323,7 @@ export default function About() {
             />
           </div>
 
-          <div className="col-span-1 mt-1 overflow-visible">
+          <div className={`col-span-1 mt-1 overflow-visible reveal reveal-right ${inView} reveal-delay-3`}>
             <AboutRight />
           </div>
         </div>

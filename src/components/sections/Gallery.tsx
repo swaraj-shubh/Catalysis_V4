@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { useRef } from "react";
+import { useInView } from "@/hooks/useInView";
 import { Swiper as SwiperType } from "swiper";
 
 import "swiper/css";
@@ -74,12 +75,15 @@ function DesktopRow({ images, reverse = false }: DesktopRowProps) {
 }
 
 export default function Gallery() {
+  const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.1 });
+  const inView = isInView ? "in-view" : "";
+
   return (
-    <section id="gallery" className="py-28 bg-[#FFEEF0]">
+    <section ref={sectionRef} id="gallery" className="py-28 bg-[#FFEEF0]">
       <Container>
         <div className="rounded-[3rem] p-7 md:p-20 border-2 border-black bg-[#FAF7ED] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
 
-          <div className="flex flex-col items-center text-center mb-16">
+          <div className={`flex flex-col items-center text-center mb-16 reveal reveal-up ${inView}`}>
             
             <div className="inline-block border-2 border-black rounded-full px-7 py-2 bg-white text-sm md:text-base font-semibold mb-8">
               GALLERY

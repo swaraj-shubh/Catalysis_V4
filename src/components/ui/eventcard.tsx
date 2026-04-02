@@ -7,11 +7,11 @@ interface EventCardProps {
     type: string;
     image: string;
     color: string;
+    detailsLink: string;
     top?: string;
     width?: number;
     height?: number;
     tags?: string[];
-    detailsLink?: string;
   };
 }
 
@@ -28,16 +28,16 @@ export default function EventCard({ event }: EventCardProps) {
 
   return (
     <div className="
-      relative 
-      w-[279px] 
-      h-[420px] 
-      flex 
-      flex-col 
-      items-center 
-      justify-end 
-      transition-transform 
-      duration-300 
-      ease-out 
+      relative
+      w-[279px]
+      h-[420px]
+      flex
+      flex-col
+      items-center
+      justify-end
+      transition-transform
+      duration-300
+      ease-out
       hover:-translate-y-3
     ">
       <div className={`absolute ${event.top || "top-[-50px]"} z-10 w-[229px] h-[207px] flex items-center justify-center`}>
@@ -52,16 +52,16 @@ export default function EventCard({ event }: EventCardProps) {
       </div>
 
       <div className="
-        w-[279px] 
-        h-[337px] 
+        w-[279px]
+        h-[337px]
         bg-linear-to-t from-[#FFE296] to-[#FFFFFF]
-        border-[3px] 
-        border-black 
-        rounded-[40px] 
-        flex flex-col 
-        items-center 
-        pt-24 
-        px-4 
+        border-[3px]
+        border-black
+        rounded-[40px]
+        flex flex-col
+        items-center
+        pt-24
+        px-4
         pb-6
       ">
         <h3 className="font-nunito text-[22px] font-extrabold text-black uppercase leading-tight">

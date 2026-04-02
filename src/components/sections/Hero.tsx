@@ -1,16 +1,35 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useRef, useEffect } from "react";
+import { useInView } from "@/hooks/useInView";
 
 function RegisterCard() {
   const router = useRouter();
+  const fingerRef = useRef<HTMLDivElement>(null);
+  const cooldownRef = useRef(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (cooldownRef.current) return;
+      cooldownRef.current = true;
+      const el = fingerRef.current;
+      if (!el) return;
+      el.classList.remove("finger-tap");
+      void el.offsetWidth;
+      el.classList.add("finger-tap");
+      setTimeout(() => { cooldownRef.current = false; }, 2200);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div className="relative w-[360px] h-[300px] bg-[#DD273E] border-[3px] border-black rounded-[3rem] flex flex-col items-center justify-center shadow-xl overflow-visible">
 
-      <div className="absolute
-        -top-12 sm:-top-16 md:-top-24
-        left-1/2 -translate-x-1/2
-        z-50 pointer-events-none"
+      <div
+        ref={fingerRef}
+        className="absolute -top-12 sm:-top-16 md:-top-24 left-1/2 -translate-x-1/2 z-50 pointer-events-none finger-tap"
       >
         <Image
           src="/hero/hero-finger.png"
@@ -137,8 +156,12 @@ function LeaderboardCard() {
 }
 
 export default function Hero() {
+  const [heroRef, heroInView] = useInView<HTMLElement>({ threshold: 0.05 });
+  const inView = heroInView ? "in-view" : "";
+
   return (
     <section
+      ref={heroRef}
       id="hero"
       className="relative min-h-screen w-full bg-[#FFEEF0] overflow-hidden flex flex-col items-center pt-12 pb-20"
     >
@@ -152,7 +175,7 @@ export default function Hero() {
         z-0"
       />
 
-      <div className="relative z-10 mt-4 md:mt-5 mb-3 md:mb-4">
+      <div className={`relative z-10 mt-4 md:mt-5 mb-3 md:mb-4 reveal reveal-scale ${inView}`}>
         <Image
           src="/hero/Pokeball.png"
           alt="pokeball"
@@ -162,7 +185,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-5xl">
+      <div className={`relative z-10 text-center px-4 max-w-5xl reveal reveal-up ${inView} reveal-delay-1`}>
 
        <h1 className="
         font-gliker
@@ -187,7 +210,7 @@ export default function Hero() {
           Join us for three electrifying days of hackathons, design battles, workshops, and competitions, all under one roof. Catalysis is where thinkers, creators, and innovators come to transform ideas into impact.
         </p>
       </div>
-<div className="relative w-full max-w-6xl mt-10">
+<div className={`relative w-full max-w-6xl mt-4 md:mt-5 reveal reveal-up ${inView} reveal-delay-2`}>
 
   <div className="flex flex-col items-center gap-10 md:hidden">
     <div className="scale-70">

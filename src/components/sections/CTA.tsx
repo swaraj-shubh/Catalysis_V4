@@ -2,12 +2,16 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useInView } from "@/hooks/useInView";
 
 export default function CTA() {
   const router = useRouter();
+  const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.15 });
+  const inView = isInView ? "in-view" : "";
+
   return (
-    <section id="cta" className="relative pt-32 pb-0 bg-[#f5eaea]">
-      <div className="w-full relative">
+    <section ref={sectionRef} id="cta" className="relative pt-32 pb-0 bg-[#f5eaea]">
+      <div className={`w-full relative reveal reveal-up ${inView}`}>
         <div className="absolute -top-12 left-0 right-0 h-20 bg-[#FF94a5] rounded-t-[3rem] border-t-2 border-x-2 border-black z-0" />
         <div className="absolute -top-8 left-0 right-0 h-20 bg-[#fc7d8d] rounded-t-[3rem] border-t-2 border-x-2 border-black z-10" />
         <div className="absolute -top-4 left-0 right-0 h-20 bg-[#e06675] rounded-t-[3rem] border-t-2 border-x-2 border-black z-20" />
@@ -63,6 +67,7 @@ export default function CTA() {
                 transition-transform duration-150
                 group-hover:-translate-y-1
                 group-active:translate-y-[5px] group-active:translate-x-[3px]
+                cta-pulse
               "
               onClick={() => router.push("/register")}
               style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)" }}

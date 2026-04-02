@@ -3,6 +3,7 @@
 import Container from "@/components/common/Container";
 // import Image from "next/image";
 import { useState } from "react";
+import { useInView } from "@/hooks/useInView";
 
 const qna = [
   {
@@ -26,13 +27,15 @@ const qna = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
+  const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.08 });
+  const inView = isInView ? "in-view" : "";
 
   return (
-    <section id="faq" className="py-24 bg-[#FFEEF0]">
+    <section ref={sectionRef} id="faq" className="py-24 bg-[#FFEEF0]">
       <Container>
         <div className="grid md:grid-cols-2 gap-16 items-start">
 
-          <div className="flex flex-col">
+          <div className={`flex flex-col reveal reveal-left ${inView}`}>
             <div className="mb-6">
                <div className="inline-block border border-black rounded-full px-5 py-1 bg-white text-sm font-medium mb-6">
                  FAQs
@@ -71,6 +74,9 @@ export default function FAQ() {
               return (
                 <div
                   key={i}
+                  className={`reveal reveal-right ${inView} reveal-delay-${Math.min(i + 1, 4)}`}
+                >
+                <div
                   className={`rounded-3xl overflow-hidden border-2 border-black transition-all duration-300 ${
                     isOpen ? "shadow-md" : "bg-white"
                   }`}
@@ -84,8 +90,11 @@ export default function FAQ() {
                     <span className="text-2xl font-black tracking-tight font-['Gliker']">
                       {item.question}
                     </span>
-                    <span className="text-3xl font-bold">
-                      {isOpen ? "−" : "+"}
+                    <span
+                      className="text-3xl font-bold transition-transform duration-300 inline-block"
+                      style={{ transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}
+                    >
+                      +
                     </span>
                   </div>
 
@@ -98,6 +107,7 @@ export default function FAQ() {
                       {item.answer}
                     </p>
                   </div>
+                </div>
                 </div>
               );
             })}

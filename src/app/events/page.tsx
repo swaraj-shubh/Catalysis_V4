@@ -1,67 +1,7 @@
 import EventCard from "@/components/ui/eventcard";
-// import ArenaPageFooter from "@/components/layout/ArenaPageFooter";
-// import Footer from "@/components/layout/Footer";
+import { EVENTS_DATA } from "@/data/events";
 
 export default function EventsPage() {
-
-    const ARENAS_DATA = [
-  { 
-    name: "DSA SMACKDOWN", 
-    type: "TECHNICAL", 
-    image: "/pokemons/alakazam.svg", 
-    color: "#FFD1D1", 
-    detailsLink: "/rules/dsa-smackdown",
-    tags: ["Data Structures", "Logic", "Problem Solving", "Optimization"]
-  },
-  { 
-    name: "PITCH PERFECT", 
-    type: "ENTREPRENEURSHIP", 
-    image: "/pokemons/jigglypuff.svg", 
-    color: "#D1FFE9", 
-    detailsLink: "/rules/pitch-wala", 
-    width: 175, 
-    height: 175,
-    tags: ["Business Model", "Ideation", "Public Speaking", "Presentation"]
-  },
-  { 
-    name: "CODING RELAY", 
-    type: "TEAM BATTLE", 
-    image: "/pokemons/ditto.svg", 
-    color: "#FFD1D1", 
-    detailsLink: "/rules/code-relay", 
-    top: "top-[-25px]",
-    tags: ["Algorithms", "Endurance", "Team Sync"]
-  },
-  { 
-    name: "TECHNOSEEK", 
-    type: "EXPLORATION", 
-    image: "/pokemons/zoroark.svg", 
-    color: "#D1FFE9", 
-    detailsLink: "/rules/technoseek", 
-    top: "top-[-30px]",
-    tags: ["Scavenger Hunt", "Teamwork", "Tech Puzzles", "Treasure Hunt"]
-  },
-  { 
-    name: "CLASH ROYALE", 
-    type: "GAMING", 
-    image: "/pokemons/arceus.svg", 
-    color: "#FFD1D1", 
-    detailsLink: "/rules/clash-royale", 
-    width: 175, 
-    height: 160,
-    tags: ["Strategy Builder", "Deck Master", "Live Combat", "Real-time"]
-  },
-  { 
-    name: "TYPEMASTER", 
-    type: "SKILL", 
-    image: "/pokemons/rayquaza.svg", 
-    color: "#D1FFE9", 
-    detailsLink: "/rules/typemaster", 
-    width: 200, 
-    height: 175,
-    tags: ["Speed Demon", "Precision Master", "Combo Builder"]
-  },
-];
 
   return (
     <>
@@ -94,14 +34,12 @@ export default function EventsPage() {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-24 mt-20 px-6 max-w-7xl mx-auto w-full justify-items-center">
-        {ARENAS_DATA.map((arena, index) => (
+        {EVENTS_DATA.map((arena, index) => (
             <EventCard key={index} event={arena} />
         ))}
         </div>
-{/* <ArenaPageFooter ></ArenaPageFooter> */}
     </main>
-    {/* <Footer></Footer> */}
     </>
-  
+
   );
 }
