@@ -28,7 +28,7 @@ interface EventCard {
 const ALL_EVENTS: EventCard[] = [
   { id: "pitch_perfect",  name: "Pitch",        type: "STRATEGY TYPE", imgSrc: "/events/pitch.png",        iconBg: "#e74c3c" },
   { id: "typemaster",     name: "Typemaster",   type: "SKILL TYPE",    imgSrc: "/events/typemaster.png",   iconBg: "#27ae60" },
-  { id: "clash_royale",   name: "Valorant",     type: "COMBAT TYPE",   imgSrc: "/events/clash-royale.png", iconBg: "#2980b9" },
+  { id: "clash_royale",   name: "Clash Royale",     type: "COMBAT TYPE",   imgSrc: "/events/clash-royale.png", iconBg: "#2980b9" },
   { id: "coding_relay",   name: "Coding Relay", type: "TECH TYPE",     imgSrc: "/events/coding-relay.png", iconBg: "#8e44ad" },
   { id: "dsa_smackdown",  name: "DSA",          type: "LOGIC TYPE",    imgSrc: "/events/dsa.png",          iconBg: "#e67e22" },
   { id: "technoseek",     name: "Technoseek",   type: "STRATEGY TYPE", imgSrc: "/events/technoseek.png",   iconBg: "#16a085" },
@@ -66,7 +66,6 @@ interface MemberData {
   branch: string;
 }
 
-// Define the shape of field errors to replace 'any'
 interface FieldErrorState {
   name?: string;
   usn?: string;
@@ -82,9 +81,9 @@ const getFieldError = (field: keyof MemberData, value: string) => {
   if (!value) return "";
   switch (field) {
     case "name":
-      return /^[a-zA-Z\s]{3,50}$/.test(value) ? "" : "Please enter a valid name.";
+      return /^[a-zA-Z\s]{3,50}$/.test(value) ? "" : "Letters only (min 3 chars)";
     case "usn":
-      return /^[a-zA-Z0-9]{10,20}$/.test(value) ? "" : "Invalid USN format (Alphanumeric only)";
+      return /^[a-zA-Z0-9]{10,20}$/.test(value) ? "" : "Invalid USN format (10+ chars)";
     case "email":
       return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(value) ? "" : "Must be a valid @gmail.com address";
     case "phone":
@@ -100,6 +99,7 @@ export default function RegisterPage() {
   const [selectedEvent, setSelectedEvent] = useState<EventId | "">("");
   const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [modalError, setModalError] = useState<string | null>(null); // State for Custom Modal
   const [teamName, setTeamName] = useState("");
   const [members, setMembers] = useState<[MemberData, MemberData, MemberData]>([
     { ...BLANK_MEMBER },
@@ -128,13 +128,13 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedEvent) return;
+    if (!selectedEvent) return setModalError("Please select a game first!");
 
     const hasErrors = errors.some(obj => Object.values(obj).some(val => val !== ""));
-    if (hasErrors) return;
+    if (hasErrors) return setModalError("Please fix the validation errors in the fields.");
 
     setLoading(true);
- 
+
     const payload = {
       event: selectedEvent,
       team_name: isTeam ? teamName : "",
@@ -149,20 +149,19 @@ export default function RegisterPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      const data = await res.json();
       setLoading(false);
 
       if (res.ok) {
         setIsSuccess(true);
       } else {
-        const data = await res.json();
-        alert(data.error || "Something went wrong.");
+        setModalError(data.error || "Something went wrong."); // Show modal instead of alert
       }
     } catch {
       setLoading(false);
-      alert("Network error. Please try again.");
+      setModalError("Network error. Please check your connection.");
     }
   };
- 
 
   if (isSuccess) {
     return (
@@ -185,12 +184,32 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="bg-[#f5eaea] min-h-screen font-nunito">
+    <div className="bg-[#f5eaea] min-h-screen font-nunito relative">
+      
+      {/* ── Custom Error Modal ── */}
+      {modalError && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white border-[4px] border-black rounded-[2rem] shadow-[8px_8px_0_0_rgba(0,0,0,1)] max-w-sm w-full p-8 text-center animate-in zoom-in-95 duration-300">
+            <div className="w-16 h-16 bg-[#dd273e] rounded-full border-4 border-black flex items-center justify-center mx-auto mb-4 text-white text-3xl font-black">
+              !
+            </div>
+            <h2 className="font-gliker text-2xl text-black mb-3">Notice!</h2>
+            <p className="font-nunito font-bold text-gray-600 mb-6 leading-tight">
+              {modalError}
+            </p>
+            <button 
+              onClick={() => setModalError(null)}
+              className="w-full bg-black text-white font-black py-3 rounded-xl border-2 border-black hover:bg-gray-800 transition active:translate-y-1 shadow-[4px_4px_0_0_rgba(0,0,0,0.2)] uppercase tracking-widest"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Hero Content */}
       <div className="text-center pt-28 pb-32 px-6">
-        <h1
-          className="text-[#2d1216] text-5xl md:text-6xl mb-4 leading-tight"
-          style={{ fontFamily: "'Gliker', 'Fredoka One', cursive", fontWeight: 900 }}
-        >
+        <h1 className="text-[#2d1216] text-5xl md:text-6xl mb-4 leading-tight" style={{ fontFamily: "'Gliker', 'Fredoka One', cursive", fontWeight: 900 }}>
           Trainer Registration
         </h1>
         <p className="max-w-xl mx-auto text-[#2d1216] text-sm md:text-base opacity-70 leading-relaxed font-medium">
@@ -199,21 +218,24 @@ export default function RegisterPage() {
       </div>
 
       <div className="relative w-full">
+        {/* Pink Stacked Cards UI */}
         <div className="absolute top-0 left-0 right-0 h-24 bg-[#FF94a5] rounded-t-[2.5rem] border-t-2 border-x-2 border-black z-[1]" style={{ transform: "translateY(-6.0rem)" }} />
         <div className="absolute top-0 left-0 right-0 h-24 bg-[#fc7d8d] rounded-t-[2.5rem] border-t-2 border-x-2 border-black z-[2]" style={{ transform: "translateY(-3.0rem)" }} />
         <div className="absolute top-0 left-0 right-0 h-24 bg-[#e06675] rounded-t-[2.5rem] border-t-2 border-x-2 border-black z-[3]" style={{ transform: "translateY(-1.3rem)" }} />
 
+        {/* Main Form Body */}
         <div className="relative bg-[#dd273e] rounded-t-[2.5rem] border-t-2 border-x-2 border-black z-[10] overflow-hidden pt-16 pb-0">
+          
           <div className="pointer-events-none absolute top-[-2%] right-[-8%] opacity-[0.12] select-none">
-            <Image src={pokeball2} alt="pokeball1" width={420} height={420} className="rotate-[-10deg]" />
+            <Image src={pokeball2} alt="pokeball" width={420} height={420} className="rotate-[-10deg]" />
           </div>
           <div className="pointer-events-none absolute top-[38%] left-[-10%] opacity-[0.12] select-none">
-            <Image src={pokeball1} alt="pokeball2" width={380} height={380} className="rotate-[15deg]" />
+            <Image src={pokeball1} alt="pokeball" width={380} height={380} className="rotate-[15deg]" />
           </div>
 
           <form onSubmit={handleSubmit} className="relative z-20 w-full max-w-4xl mx-auto px-6 md:px-12 pb-0 space-y-14">
             <Section title="PERSONAL DETAILS" />
-            <MemberForm member={members[0]} errors={errors[0]} index={0} onChange={updateMember} showLabel={false} />
+            <MemberForm member={members[0]} errors={errors[0]} index={0} label="Member 1" onChange={updateMember} showLabel={false} />
 
             <div className="space-y-8 -mt-4">
               <Section title="SELECT YOUR EVENTS" />
@@ -236,31 +258,30 @@ export default function RegisterPage() {
             <div className="space-y-8">
               <Section title="ACADEMIC DETAILS" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                <SelectField label="Semester" placeholder="Select your semester" value={members[0].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v: string) => updateMember(0, "semester", v)} />
-                <BranchSelectField label="Branch" placeholder="Select your branch" value={members[0].branch} onChange={(v: string) => updateMember(0, "branch", v)} />
+                <SelectField label="Semester" placeholder="Select semester" value={members[0].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v: string) => updateMember(0, "semester", v)} />
+                <BranchSelectField label="Branch" placeholder="Select branch" value={members[0].branch} onChange={(v) => updateMember(0, "branch", v)} />
               </div>
             </div>
 
             {isTeam && (
-              <div className="space-y-8">
-                <Section title="MEMBER 2 DETAILS" />
-                <MemberForm member={members[1]} errors={errors[1]} index={1} onChange={updateMember} showLabel />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                  <SelectField label="Semester" placeholder="Select semester" value={members[1].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v: string) => updateMember(1, "semester", v)} />
-                  <BranchSelectField label="Branch" placeholder="Select branch" value={members[1].branch} onChange={(v: string) => updateMember(1, "branch", v)} />
+              <>
+                <div className="space-y-8">
+                  <Section title="MEMBER 2 DETAILS" />
+                  <MemberForm member={members[1]} errors={errors[1]} index={1} label="Member 2" onChange={updateMember} showLabel />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
+                    <SelectField label="Semester" placeholder="Select semester" value={members[1].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(1, "semester", v)} />
+                    <BranchSelectField label="Branch" placeholder="Select branch" value={members[1].branch} onChange={(v) => updateMember(1, "branch", v)} />
+                  </div>
                 </div>
-              </div>
-            )}
-
-            {isTeam && (
-              <div className="space-y-8">
-                <Section title="MEMBER 3 DETAILS" />
-                <MemberForm member={members[2]} errors={errors[2]} index={2} onChange={updateMember} showLabel />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                  <SelectField label="Semester" placeholder="Select semester" value={members[2].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v: string) => updateMember(2, "semester", v)} />
-                  <BranchSelectField label="Branch" placeholder="Select branch" value={members[2].branch} onChange={(v: string) => updateMember(2, "branch", v)} />
+                <div className="space-y-8">
+                  <Section title="MEMBER 3 DETAILS" />
+                  <MemberForm member={members[2]} errors={errors[2]} index={2} label="Member 3" onChange={updateMember} showLabel />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
+                    <SelectField label="Semester" placeholder="Select semester" value={members[2].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(2, "semester", v)} />
+                    <BranchSelectField label="Branch" placeholder="Select branch" value={members[2].branch} onChange={(v) => updateMember(2, "branch", v)} />
+                  </div>
                 </div>
-              </div>
+              </>
             )}
 
             <div className="flex flex-col items-start gap-5 pt-6 pb-24 max-w-3xl mx-auto">
@@ -270,7 +291,7 @@ export default function RegisterPage() {
               </label>
               <div className="relative group cursor-pointer">
                 <div className="absolute inset-0 rounded-2xl bg-black z-0" style={{ transform: "translate(4px, 6px)" }} />
-                <button type="submit" disabled={loading || !selectedEvent} className="relative z-10 bg-white text-black font-black tracking-widest uppercase px-12 py-3.5 rounded-2xl border-2 border-black transition-transform duration-150 group-hover:-translate-y-0.5 group-active:translate-y-1 disabled:opacity-60 disabled:cursor-not-allowed text-sm" style={{ letterSpacing: "0.15em" }}>
+                <button type="submit" disabled={loading || !selectedEvent} className="relative z-10 bg-white text-black font-black tracking-widest uppercase px-12 py-3.5 rounded-2xl border-2 border-black transition-transform duration-150 group-hover:-translate-y-0.5 group-active:translate-y-1 disabled:opacity-60 text-sm" style={{ letterSpacing: "0.15em" }}>
                   {loading ? "Registering..." : "REGISTER NOW"}
                 </button>
               </div>
@@ -298,6 +319,7 @@ interface MemberFormProps {
   member: MemberData;
   errors: FieldErrorState;
   index: 0 | 1 | 2;
+  label: string;
   onChange: (i: 0 | 1 | 2, f: keyof MemberData, v: string) => void;
   showLabel: boolean;
 }
@@ -310,8 +332,8 @@ function MemberForm({ member, errors, index, onChange, showLabel }: MemberFormPr
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
         <InputField label="Name" placeholder="Enter your full name" value={member.name} error={errors?.name} onChange={(v: string) => onChange(index, "name", v)} required={req} />
         <InputField label="USN" placeholder="Enter your USN / ID" value={member.usn} error={errors?.usn} onChange={(v: string) => onChange(index, "usn", v)} required={req} />
-        <InputField label="Email" placeholder="Enter your email address" value={member.email} error={errors?.email} onChange={(v: string) => onChange(index, "email", v)} required={req} type="email" />
-        <InputField label="Phone Number" placeholder="Enter your phone number" value={member.phone} error={errors?.phone} onChange={(v: string) => onChange(index, "phone", v)} required={req} type="tel" />
+        <InputField label="Email" placeholder="Enter email address" value={member.email} error={errors?.email} onChange={(v: string) => onChange(index, "email", v)} required={req} type="email" />
+        <InputField label="Phone Number" placeholder="Enter phone number" value={member.phone} error={errors?.phone} onChange={(v: string) => onChange(index, "phone", v)} required={req} type="tel" />
       </div>
     </div>
   );
@@ -331,10 +353,10 @@ function InputField({ label, placeholder, value, error, onChange, required, type
   return (
     <div className="flex flex-col gap-2">
       <label className="text-white ml-2 font-semibold text-base" style={{ fontFamily: "'Gliker','Fredoka One',cursive" }}>{label}</label>
-      <input type={type} required={required} placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)} className={`w-full px-5 py-3.5 rounded-full border-2 border-black bg-white text-black text-sm placeholder:text-gray-400 outline-none transition-all ${error ? 'ring-4 ring-yellow-400' : 'focus:ring-2 focus:ring-white/40'}`} />
+      <input type={type} required={required} placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)} className={`w-full px-5 py-3.5 rounded-full border-2 border-black bg-white text-black text-sm outline-none transition-all ${error ? 'ring-4 ring-yellow-400' : 'focus:ring-2 focus:ring-white/40'}`} />
       <div className="min-h-[16px] ml-4">
         {error ? (
-          <p className="text-yellow-300 text-[10px] font-bold uppercase italic tracking-wider animate-pulse"> {error}</p>
+          <p className="text-yellow-300 text-[10px] font-bold uppercase italic tracking-wider animate-pulse">⚠️ {error}</p>
         ) : (
           <p className="text-white/20 text-[9px] font-bold uppercase tracking-widest">
             {label === "Phone" ? "Starts with 6-9" : label === "USN" ? "Alphanumeric" : label === "Email" ? "Ends with @gmail.com" : ""}
@@ -360,7 +382,7 @@ function SelectField({ label, placeholder, value, options, onChange }: SelectFie
       <div className="relative">
         <select required value={value} onChange={(e) => onChange(e.target.value)} className="w-full px-5 py-3.5 rounded-full border-2 border-black bg-white text-black text-sm outline-none appearance-none cursor-pointer">
           <option value="">{placeholder}</option>
-          {options.map((o: { value: string; label: string }) => <option key={o.value} value={o.value}>{o.label}</option>)}
+          {options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
         </select>
         <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2">
           <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1L7 7L13 1" stroke="#dd273e" strokeWidth="2.5" strokeLinecap="round" /></svg>
