@@ -22,9 +22,10 @@ const RulesPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   }
 
   return (
-    <div className="bg-[#FFFFFF] text-black overflow-hidden selection:bg-[#83BD90] selection:text-white">
+    <div className="bg-[#FFFFFF] text-black overflow-hidden" style={{ ["--selection-color" as string]: event.selectionColor }}>
+      <style>{`::selection { background: ${event.selectionColor}; color: white; }`}</style>
       {/* Hero Section */}
-      <div className="relative bg-[#83BD90] pt-4 pb-40">
+      <div className="relative pt-4 pb-40" style={{ backgroundColor: event.heroColor }}>
         
         {/* Navbar */}
         <Navbar />
@@ -76,7 +77,7 @@ const RulesPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
       <Container>
         <div className="relative py-16 md:py-20">
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <Image src={event.image} alt={`${event.title} watermark`} width={441} height={441} className="opacity-[0.1]" style={{ width: 'auto', height: 'auto' }} />
+            <Image src={event.image} alt={`${event.title} watermark`} width={800} height={800} className="opacity-[0.15] w-[500px] md:w-[700px] lg:w-[800px] h-auto" />
           </div>
           
           <div className="relative grid md:grid-cols-2 gap-y-[60px] max-w-[1000px] mx-auto z-10 px-4 md:px-0">

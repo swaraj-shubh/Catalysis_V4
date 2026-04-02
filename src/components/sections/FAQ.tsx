@@ -90,8 +90,11 @@ export default function FAQ() {
                     <span className="text-2xl font-black tracking-tight font-['Gliker']">
                       {item.question}
                     </span>
-                    <span className="text-3xl font-bold">
-                      {isOpen ? "−" : "+"}
+                    <span
+                      className="text-3xl font-bold transition-transform duration-300 inline-block"
+                      style={{ transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}
+                    >
+                      +
                     </span>
                   </div>
 

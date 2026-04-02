@@ -210,7 +210,7 @@ export default function Hero() {
           Join us for three electrifying days of hackathons, design battles, workshops, and competitions, all under one roof. Catalysis is where thinkers, creators, and innovators come to transform ideas into impact.
         </p>
       </div>
-<div className={`relative w-full max-w-6xl mt-10 reveal reveal-up ${inView} reveal-delay-2`}>
+<div className={`relative w-full max-w-6xl mt-4 md:mt-5 reveal reveal-up ${inView} reveal-delay-2`}>
 
   <div className="flex flex-col items-center gap-10 md:hidden">
     <div className="scale-70">

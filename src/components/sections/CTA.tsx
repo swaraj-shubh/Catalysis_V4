@@ -67,6 +67,7 @@ export default function CTA() {
                 transition-transform duration-150
                 group-hover:-translate-y-1
                 group-active:translate-y-[5px] group-active:translate-x-[3px]
+                cta-pulse
               "
               onClick={() => router.push("/register")}
               style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)" }}

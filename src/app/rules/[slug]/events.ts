@@ -3,6 +3,8 @@ export type EventDetails = {
   title: string;
   subtitle: string;
   image: string;
+  heroColor: string;
+  selectionColor: string;
   tags: string[];
   description: string;
   rules: string[];
@@ -16,6 +18,8 @@ export const eventData: Record<string, EventDetails> = {
     title: "Typemaster Arena",
     subtitle: "Type fast. Stay accurate. Outpace every competitor.",
     image: "/pokemons/rayquaza.svg",
+    heroColor: "#83BD90",
+    selectionColor: "#83BD90",
     tags: ["Speed Demon", "Precision Master", "Combo Builder"],
     description: "Typemaster Arena is a high-speed typing competition designed to test your accuracy, speed, and consistency. Participants will compete in multiple rounds where precision and quick reflexes are the key to survival. Only those who maintain high accuracy while typing at incredible speed will rise to the top.",
     rules: [
@@ -44,6 +48,8 @@ export const eventData: Record<string, EventDetails> = {
     title: "Clash Royale",
     subtitle: "Enter the battlefield.",
     image: "/pokemons/arceus.svg",
+    heroColor: "#F5E6A3",
+    selectionColor: "#E8D580",
     tags: ["Strategy", "1v1", "Card Battle"],
     description: "Coordinate, outmaneuver, and outsmart your opponents in this fast-paced card battle. Prove your deck-building strategy and raw mechanical skill to claim the title of campus champions.",
     rules: [
@@ -71,6 +77,8 @@ export const eventData: Record<string, EventDetails> = {
     title: "Technoseek",
     subtitle: "Your journey to becoming a champion begins now.",
     image: "/pokemons/zoroark.svg",
+    heroColor: "#C45B5B",
+    selectionColor: "#C45B5B",
     tags: ["Scavenger Hunt", "Tech Puzzles", "Teamwork"],
     description: "Navigate through mind-bending technical puzzles and clues hidden across the campus. Combine your technical knowledge with quick thinking to be the first team to crack the final code.",
     rules: [
@@ -98,6 +106,8 @@ export const eventData: Record<string, EventDetails> = {
     title: "Coding Relay",
     subtitle: "Tag-team coding under intense pressure.",
     image: "/pokemons/ditto.svg",
+    heroColor: "#B39DDB",
+    selectionColor: "#B39DDB",
     tags: ["Algorithms", "Team Sync", "Endurance"],
     description: "A fast-paced tag-team coding competition. One team member starts coding a solution, and when the buzzer rings, the next member must take over exactly where they left off without communicating!",
     rules: [
@@ -125,6 +135,8 @@ export const eventData: Record<string, EventDetails> = {
     title: "DSA Challenge",
     subtitle: "Crack the code and become a true champion.",
     image: "/pokemons/alakazam.svg",
+    heroColor: "#F5D76E",
+    selectionColor: "#E8C84A",
     tags: ["Data Structures", "Optimization", "Logic"],
     description: "Put your algorithmic thinking to the ultimate test. Solve complex Data Structure and Algorithm problems under a strict time limit. Efficiency, memory, and execution speed are your only allies.",
     rules: [
@@ -152,6 +164,8 @@ export const eventData: Record<string, EventDetails> = {
     title: "Pitch Event",
     subtitle: "Make your presentation stand out and secure victory.",
     image: "/pokemons/jigglypuff.svg",
+    heroColor: "#FFB6C1",
+    selectionColor: "#FF9AAF",
     tags: ["Ideation", "Business Model", "Presentation"],
     description: "Got the next billion-dollar idea? Present your startup pitch to our panel of judges. You will be evaluated on innovation, market feasibility, revenue model, and overall presentation skills.",
     rules: [
