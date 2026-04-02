@@ -12,7 +12,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Required fields missing" }, { status: 400 });
     }
 
-    // Duplicate Check: Same USN for same Event
     const existing = await Participant.findOne({ event, "member1.usn": member1.usn });
     if (existing) return NextResponse.json({ error: "Already registered for this event" }, { status: 409 });
 

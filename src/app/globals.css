@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "tw-animate-css";
+@plugin "tailwindcss-animate";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -149,6 +149,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-nunito), sans-serif;
   }
   html {
     @apply font-sans;

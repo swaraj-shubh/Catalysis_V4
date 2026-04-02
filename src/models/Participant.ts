@@ -9,7 +9,7 @@ interface Member {
   usn: string;
   email: string;
   phone: string;
-  semester: number; // Changed to number
+  semester: number;
   branch: string;
 }
 
@@ -33,10 +33,10 @@ const MemberSchema = new Schema<Member>({
 
 const ParticipantSchema = new Schema<IParticipant>({
   team_name: { type: String, default: "" },
-  event: { 
-    type: String, 
-    enum: ["technoseek","typemaster","clash_royale","coding_relay","dsa_smackdown","pitch_perfect"], 
-    required: true 
+  event: {
+    type: String,
+    enum: ["technoseek","typemaster","clash_royale","coding_relay","dsa_smackdown","pitch_perfect"],
+    required: true
   },
   member1: { type: MemberSchema, required: true },
   member2: { type: MemberSchema, default: {} },

@@ -72,7 +72,7 @@ function RegisterCard() {
 function EventHighlightsCard() {
   return (
     <div className="relative w-[246px] h-[250px] bg-white border-[3px] border-black rounded-[3rem] flex flex-col items-center pt-8 px-4 shadow-sm">
-      
+
       <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 z-10">
         <Image
           src="/hero/star.png"
@@ -109,7 +109,7 @@ function EventHighlightsCard() {
 function LeaderboardCard() {
   return (
     <div className="relative w-[246px] h-[250px] bg-[#FAF7ED] border-[3px] border-black rounded-[3rem] flex flex-col items-center pt-8 px-4 shadow-sm">
-      
+
       <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 z-10">
         <Image
           src="/hero/star.png"
@@ -157,16 +157,15 @@ export default function Hero() {
       />
 
       <div className="relative z-10 mt-4 md:mt-5 mb-3 md:mb-4">
-        <Image 
-          src="/hero/Pokeball.png" 
-          alt="pokeball" 
-          width={50}  
-          height={50} 
+        <Image
+          src="/hero/Pokeball.png"
+          alt="pokeball"
+          width={50}
+          height={50}
           className="drop-shadow-md md:w-[80px] md:h-[80px]"
         />
       </div>
 
-  
       <div className="relative z-10 text-center px-4 max-w-5xl">
 
        <h1 className="

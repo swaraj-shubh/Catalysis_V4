@@ -31,13 +31,13 @@ export default function FAQ() {
     <section id="faq" className="py-24 bg-[#FFEEF0]">
       <Container>
         <div className="grid md:grid-cols-2 gap-16 items-start">
-          
+
           <div className="flex flex-col">
             <div className="mb-6">
                <div className="inline-block border border-black rounded-full px-5 py-1 bg-white text-sm font-medium mb-6">
                  FAQs
                </div>
-               
+
                <div className="mb-6">
                 <h1 className="font-gliker font-medium text-[34px] sm:text-[42px] md:text-[52px] leading-[1.08] tracking-[-0.005em] text-[#3A001D] max-w-[650px]">
                   Frequently Asked Questions
@@ -89,7 +89,7 @@ export default function FAQ() {
                     </span>
                   </div>
 
-                  <div 
+                  <div
                     className={`bg-white text-[#3b0a1e] transition-all duration-300 ease-in-out ${
                       isOpen ? "max-h-40 py-6 px-6 opacity-100" : "max-h-0 py-0 px-6 opacity-0"
                     }`}

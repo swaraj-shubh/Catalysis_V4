@@ -156,7 +156,7 @@ function AboutMobile() {
       {MOBILE_BADGES.map((badge, i) => (
         <div
           key={i}
-          className="absolute z-30"
+          className={`absolute z-30 ${FLOAT_CLASSES[i % FLOAT_CLASSES.length]}`}
           style={{
             top: badge.top,
             left: badge.left,
