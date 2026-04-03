@@ -170,7 +170,7 @@ export default function Hero() {
         -top-20 md:-top-25
         left-1/2 -translate-x-1/2
         w-[40px] sm:w-[60px] md:w-[84px]
-        h-[520px] sm:h-[540px] md:h-[600px]
+        h-[620px] sm:h-[540px] md:h-[820px]
         bg-white
         z-0"
       />
