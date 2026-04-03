@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnect";
 import Participant from "@/models/Participant";
+import { getSession } from "@/lib/session";
 
 const ALL_EVENTS = [
   "technoseek",
@@ -13,6 +14,11 @@ const ALL_EVENTS = [
 
 export async function GET() {
   try {
+    const session = await getSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     await dbConnect();
 
     const total = await Participant.countDocuments();

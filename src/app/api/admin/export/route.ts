@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnect";
 import Participant, { IParticipant } from "@/models/Participant";
+import { getSession } from "@/lib/session";
 
 function escapeCsv(value: unknown): string {
   const str = value == null ? "" : String(value);
@@ -46,6 +47,11 @@ function participantToRows(p: IParticipant): string[] {
 
 export async function GET(req: NextRequest) {
   try {
+    const session = await getSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     await dbConnect();
 
     const event = req.nextUrl.searchParams.get("event");
