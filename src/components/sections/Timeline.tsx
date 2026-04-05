@@ -109,7 +109,7 @@ function EventCard({ item, delay = 0 }: { item: TimelineEvent; delay?: number })
           {item.hasRegister && (
             <button
               onClick={() => router.push("/register")}
-              className="text-white text-[8px] sm:text-[10px] font-black uppercase tracking-wider px-2 sm:px-5 py-0.5 sm:py-2 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:scale-110 hover:bg-green-500 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:scale-95 active:shadow-none flex-shrink-0"
+              className="text-white text-[14px] sm:text-[10px] font-black uppercase tracking-wider px-2 sm:px-5 py-0.5 sm:py-2 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:scale-110 hover:bg-green-500 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:scale-95 active:shadow-none flex-shrink-0"
               style={{ backgroundColor: accentColor }}
             >
               Register
@@ -118,7 +118,7 @@ function EventCard({ item, delay = 0 }: { item: TimelineEvent; delay?: number })
           {item.slug && (
             <Link
               href={`/rules/${item.slug}`}
-              className="bg-white text-black text-[8px] sm:text-[10px] font-bold px-2 sm:px-5 py-0.5 sm:py-2 rounded-full border-2 border-black transition-all duration-200 hover:scale-110 hover:bg-[#E3242B] hover:text-white active:scale-95 flex items-center gap-0.5 sm:gap-1 flex-shrink-0 group"
+              className="bg-white text-black text-[14px] sm:text-[10px] font-bold px-2 sm:px-5 py-0.5 sm:py-2 rounded-full border-2 border-black transition-all duration-200 hover:scale-110 hover:bg-[#E3242B] hover:text-white active:scale-95 flex items-center gap-0.5 sm:gap-1 flex-shrink-0 group"
             >
               Details
               <span className="transition-transform group-hover:translate-x-1">→</span>

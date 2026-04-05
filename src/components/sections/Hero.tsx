@@ -36,6 +36,9 @@ function RegisterCard() {
           alt="finger"
           width={180}
           height={180}
+          unoptimized
+          priority
+          quality={100}
           className="object-contain
             w-[110px] sm:w-[140px] md:w-[180px]
             h-auto"
@@ -49,6 +52,9 @@ function RegisterCard() {
             alt="shadow"
             width={120}
             height={40}
+            unoptimized 
+            priority
+            quality={100}
           />
         </div>
         <div className="relative ml-30 transition-transform duration-200 hover:scale-115 active:scale-95 -bottom-3 z-20">
@@ -58,27 +64,51 @@ function RegisterCard() {
             width={100}
             height={50}
             onClick={() => router.push("/register")}
+            unoptimized
+            priority
+            quality={100}
           />
         </div>
       </div>
       <div className="relative group cursor-pointer transition-transform active:scale-95">
-        <div className="absolute top-10 left-0 z-10">
-          <Image
-            src="/hero/register-now-shadow.png"
-            alt="shadow"
-            width={240}
-            height={80}
+        <div className="relative inline-block group mt-10 select-none">
+          <div 
+            className="
+              absolute inset-0 translate-y-3 
+              bg-[#3A001D] border-[3px] border-black rounded-2xl
+              opacity-80
+              z-0
+              transition-transform duration-150 ease-out
+            "
+            style={{ transform: "rotate(3deg)" }}
           />
-        </div>
 
-        <div className="relative top-7 transition-transform duration-200 hover:scale-110 z-20">
-          <Image
-            src="/hero/register-now.png"
-            alt="Register Now"
-            width={240}
-            height={80}
+          <button
             onClick={() => router.push("/register")}
-          />
+            className="
+              relative px-12 py-3.5 
+              bg-white text-black 
+              border-[3px] border-black rounded-2xl
+              
+              font-bold
+              text-2xl tracking-tight
+              
+              transition-all duration-150 ease-out
+              cursor-pointer
+              z-10
+              
+              auto-cols-auto [ -webkit-tap-highlight-color:transparent ]
+              
+              hover:scale-105 hover:-translate-y-1
+              
+              active:translate-y-[12px] 
+              active:translate-x-[2px]
+              active:scale-[0.98]
+            "
+            style={{ transform: "rotate(5deg)" }}
+          >
+            REGISTER NOW
+          </button>
         </div>
       </div>
     </div>
@@ -96,6 +126,9 @@ function EventHighlightsCard() {
           width={45}
           height={45}
           className="object-contain"
+          unoptimized
+            priority
+            quality={100}
         />
       </div>
 
@@ -111,7 +144,7 @@ function EventHighlightsCard() {
       </div>
 
       <div className="mt-auto mb-8 relative flex items-center justify-center w-full">
-        <div className="relative z-10 -mr-4">
+        <div className="relative z-10">
           <h1 className="text-black font-gliker text-yellow-300 text-2xl">Register</h1>
         </div>
         <div className="relative z-0 opacity-80">
@@ -133,6 +166,9 @@ function LeaderboardCard() {
           width={45}
           height={45}
           className="object-contain"
+          unoptimized
+          priority
+          quality={100}
         />
       </div>
 
@@ -150,6 +186,9 @@ function LeaderboardCard() {
           width={180}
           height={40}
           className="object-contain"
+          unoptimized
+          priority
+          quality={100}
         />
       </div>
     </div>
@@ -167,14 +206,15 @@ export default function Hero() {
       className="relative min-h-screen w-full bg-[#FFEEF0] overflow-hidden flex flex-col items-center pt-12 pb-20"
     >
 
-      <div className="absolute
+      <div className={`absolute
         -top-20 md:-top-25
         left-1/2 -translate-x-1/2
         w-[40px] sm:w-[60px] md:w-[84px]
         h-[620px] sm:h-[540px] md:h-[820px]
         bg-white
-        z-0"
-      />
+        z-0
+        reveal reveal-up ${inView}
+      `} />
 
       <div className={`relative z-10 mt-4 md:mt-5 mb-3 md:mb-4 reveal reveal-scale ${inView}`}>
         <Image
@@ -183,6 +223,9 @@ export default function Hero() {
           width={50}
           height={50}
           className="drop-shadow-md md:w-[80px] md:h-[80px]"
+          unoptimized
+          priority
+          quality={100}
         />
       </div>
 

@@ -103,8 +103,10 @@ export default function FAQ() {
                   </div>
 
                   <div
-                    className={`bg-white text-[#3b0a1e] transition-all duration-300 ease-in-out ${
-                      isOpen ? "max-h-40 py-6 px-6 opacity-100" : "max-h-0 py-0 px-6 opacity-0"
+                    className={`bg-white text-[#3b0a1e] transition-all duration-300 ease-in-out overflow-hidden ${
+                      isOpen 
+                        ? "max-h-[500px] py-6 px-6 opacity-100" 
+                        : "max-h-0 py-0 px-6 opacity-0"
                     }`}
                   >
                     <p className="text-lg font-medium leading-relaxed">
