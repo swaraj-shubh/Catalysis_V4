@@ -167,6 +167,9 @@ function AboutMobile() {
           width={100}
           height={100}
           className="drop-shadow-xl h-auto"
+          unoptimized
+          priority
+          quality={100}
         />
       </div>
 
@@ -326,6 +329,9 @@ export default function About() {
               alt="Large Central Pokeball"
               width={250}
               height={250}
+              unoptimized
+              priority
+              quality={100}
               className="transition-transform hover:scale-105 drop-shadow-2xl h-auto w-full max-w-[120px] md:max-w-[180px] lg:max-w-[250px]"
             />
           </div>
