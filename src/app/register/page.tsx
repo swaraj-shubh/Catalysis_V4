@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import pokeball1 from "../../../public/poke-balls/pokeball1.png";
 import pokeball2 from "../../../public/poke-balls/pokeball2.png";
-import { BRANCHES, COLLEGES, TEAM_EVENT_IDS } from "@/lib/formConstants";
+import { BRANCHES, TEAM_EVENT_IDS } from "@/lib/formConstants";
 import type { EventId } from "@/lib/formConstants";
 
 // ─── Constants & Types ────────────────────────────────────────────────────────
@@ -33,7 +33,6 @@ interface MemberData {
   phone: string;
   semester: string;
   branch: string;
-  college: string;
 }
 
 interface FieldErrorState {
@@ -43,7 +42,7 @@ interface FieldErrorState {
   phone?: string;
 }
 
-const BLANK_MEMBER: MemberData = { name: "", usn: "", email: "", phone: "", semester: "", branch: "", college: "" };
+const BLANK_MEMBER: MemberData = { name: "", usn: "", email: "", phone: "", semester: "", branch: "" };
 
 // ─── Validation Helper ────────────────────────────────────────────────────────
 
@@ -238,7 +237,6 @@ export default function RegisterPage() {
             <div className="space-y-8">
               <Section title="ACADEMIC DETAILS" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                <SelectField label="College" placeholder="Select college" value={members[0].college} options={COLLEGES.map((c) => ({ value: c, label: c }))} onChange={(v: string) => updateMember(0, "college", v)} />
                 <SelectField label="Semester" placeholder="Select semester" value={members[0].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v: string) => updateMember(0, "semester", v)} />
                 <BranchSelectField label="Branch" placeholder="Select branch" value={members[0].branch} onChange={(v) => updateMember(0, "branch", v)} />
               </div>
@@ -250,7 +248,6 @@ export default function RegisterPage() {
                   <Section title="MEMBER 2 DETAILS" />
                   <MemberForm member={members[1]} errors={errors[1]} index={1} label="Member 2" onChange={updateMember} showLabel />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                    <SelectField label="College" placeholder="Select college" value={members[1].college} options={COLLEGES.map((c) => ({ value: c, label: c }))} onChange={(v) => updateMember(1, "college", v)} />
                     <SelectField label="Semester" placeholder="Select semester" value={members[1].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(1, "semester", v)} />
                     <BranchSelectField label="Branch" placeholder="Select branch" value={members[1].branch} onChange={(v) => updateMember(1, "branch", v)} />
                   </div>
@@ -259,7 +256,6 @@ export default function RegisterPage() {
                   <Section title="MEMBER 3 DETAILS" />
                   <MemberForm member={members[2]} errors={errors[2]} index={2} label="Member 3" onChange={updateMember} showLabel />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                    <SelectField label="College" placeholder="Select college" value={members[2].college} options={COLLEGES.map((c) => ({ value: c, label: c }))} onChange={(v) => updateMember(2, "college", v)} />
                     <SelectField label="Semester" placeholder="Select semester" value={members[2].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(2, "semester", v)} />
                     <BranchSelectField label="Branch" placeholder="Select branch" value={members[2].branch} onChange={(v) => updateMember(2, "branch", v)} />
                   </div>
