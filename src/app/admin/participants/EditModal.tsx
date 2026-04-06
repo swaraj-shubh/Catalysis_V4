@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Participant, Member } from "./ParticipantsClient";
-import { EVENT_IDS, EVENT_LABELS, BRANCHES, COLLEGES } from "@/lib/formConstants";
+import { EVENT_IDS, EVENT_LABELS, BRANCHES } from "@/lib/formConstants";
 
 interface EditModalProps {
   participant: Participant;
@@ -116,10 +116,6 @@ export default function EditModal({ participant, onClose, onSave }: EditModalPro
                   <select value={formData[m].semester || ""} onChange={(e) => handleMemberChange(m, "semester", parseInt(e.target.value))} style={inputStyle} required={i===0}>
                     <option value="">Semester</option>
                     {["1","2","3","4","5","6","7","8"].map(s => <option key={s} value={s}>Semester {s}</option>)}
-                  </select>
-                  <select value={formData[m].college || ""} onChange={(e) => handleMemberChange(m, "college", e.target.value)} style={inputStyle} required={i===0}>
-                    <option value="">College</option>
-                    {COLLEGES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                   <select value={formData[m].branch || ""} onChange={(e) => handleMemberChange(m, "branch", e.target.value)} style={{ ...inputStyle, gridColumn: "1 / -1" }} required={i===0}>
                     <option value="">Branch</option>

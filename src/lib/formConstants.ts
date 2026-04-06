@@ -1,8 +1,5 @@
 // Shared constants for registration form, admin panel, and Mongoose schema
 
-export const COLLEGES = ["DSCE", "DSATM", "DSU"] as const;
-export type College = (typeof COLLEGES)[number];
-
 export const EVENT_IDS = [
   "technoseek",
   "typemaster",

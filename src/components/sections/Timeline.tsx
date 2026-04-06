@@ -564,12 +564,9 @@ export default function Timeline() {
           <div
             className="rounded-2xl border-2 px-4 sm:px-6 py-3 sm:py-4 flex items-center gap-4 flex-wrap"
             style={{
-              background:
-                "linear-gradient(135deg, rgba(255,214,10,0.12) 0%, rgba(255,214,10,0.04) 100%)",
-              borderColor: "#FFD60A",
-              boxShadow: isDark
-                ? "0 0 28px rgba(255,214,10,0.18), inset 0 1px 0 rgba(255,255,255,0.06)"
-                : "3px 3px 0 rgba(0,0,0,1)",
+              background: "linear-gradient(135deg, rgba(221,39,62,0.08) 0%, rgba(221,39,62,0.03) 100%)",
+              borderColor: "#DD273E",
+              boxShadow: "3px 3px 0 rgba(0,0,0,1)",
             }}
           >
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
@@ -579,18 +576,18 @@ export default function Timeline() {
                 fill
                 sizes="48px"
                 className="object-contain"
-                style={{ filter: "drop-shadow(0 0 8px rgba(255,214,10,0.5))" }}
+                style={{ filter: "drop-shadow(0 2px 4px rgba(221,39,62,0.4))" }}
               />
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="text-[10px] font-bold tracking-[0.2em] uppercase leading-none mb-1" style={{ color: "rgba(255,214,10,0.7)" }}>
+              <p className="text-[10px] font-bold tracking-[0.2em] uppercase leading-none mb-1" style={{ color: "rgba(221,39,62,0.7)" }}>
                 All-Day Event · Both Days
               </p>
-              <p className={`font-black text-xl sm:text-2xl leading-none tracking-tight ${isDark ? "text-white" : "text-[#3A001D]"}`}>
+              <p className="font-black text-xl sm:text-2xl leading-none tracking-tight text-[#3A001D]">
                 TYPEMASTER
               </p>
-              <p className={`text-[11px] mt-0.5 ${isDark ? "text-white/35" : "text-black/50"}`}>
+              <p className="text-[11px] mt-0.5 text-black/50">
                 Type fast. Stay accurate. Only the swiftest survive.
               </p>
             </div>
@@ -601,9 +598,9 @@ export default function Timeline() {
                   key={i}
                   className="text-[10px] font-bold px-3 py-1 rounded-full border"
                   style={{
-                    borderColor: "rgba(255,214,10,0.4)",
-                    color: "#FFD60A",
-                    background: "rgba(255,214,10,0.1)",
+                    borderColor: "rgba(221,39,62,0.35)",
+                    color: "#DD273E",
+                    background: "rgba(221,39,62,0.08)",
                   }}
                 >
                   {d}
@@ -611,12 +608,10 @@ export default function Timeline() {
               ))}
               <Link
                 href="/rules/typemaster"
-                className="text-[10px] font-bold px-4 py-1.5 rounded-full border-2 text-white transition-all hover:scale-105 flex items-center gap-1 group"
+                className="text-[10px] font-bold px-4 py-1.5 rounded-full border-2 transition-all hover:scale-105 flex items-center gap-1 group text-[#3A001D] bg-white"
                 style={{
-                  borderColor: "#FFD60A",
-                  background: "rgba(255,214,10,0.15)",
-                  boxShadow: isDark ? "0 0 12px rgba(255,214,10,0.2)" : "2px 2px 0 rgba(0,0,0,0.5)",
-                  color: isDark ? "white" : "#3A001D",
+                  borderColor: "#DD273E",
+                  boxShadow: "2px 2px 0 rgba(0,0,0,0.5)",
                 }}
               >
                 Details
