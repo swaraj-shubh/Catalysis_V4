@@ -1,5 +1,4 @@
 import Container from "@/components/common/Container";
-import Navbar from "@/components/layout/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";

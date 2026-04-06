@@ -4,18 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import pokeball1 from "../../../public/poke-balls/pokeball1.png";
 import pokeball2 from "../../../public/poke-balls/pokeball2.png";
+import { BRANCHES, COLLEGES, TEAM_EVENT_IDS } from "@/lib/formConstants";
+import type { EventId } from "@/lib/formConstants";
 
 // ─── Constants & Types ────────────────────────────────────────────────────────
-
-export type EventId =
-  | "pitch_perfect"
-  | "typemaster"
-  | "clash_royale"
-  | "coding_relay"
-  | "dsa_smackdown"
-  | "technoseek";
-
-export const TEAM_EVENTS: EventId[] = ["technoseek", "coding_relay"];
 
 interface EventCard {
   id: EventId;
@@ -28,33 +20,10 @@ interface EventCard {
 const ALL_EVENTS: EventCard[] = [
   { id: "pitch_perfect",  name: "PitchDexs",    type: "STRATEGY TYPE", imgSrc: "/events/pitch.png",        iconBg: "#e74c3c" },
   { id: "typemaster",     name: "Typemaster",   type: "SKILL TYPE",    imgSrc: "/events/typemaster.png",   iconBg: "#27ae60" },
-  { id: "clash_royale",   name: "Clash Royale",     type: "COMBAT TYPE",   imgSrc: "/events/clash-royale.png", iconBg: "#2980b9" },
+  { id: "clash_royale",   name: "Clash Royale", type: "COMBAT TYPE",   imgSrc: "/events/clash-royale.png", iconBg: "#2980b9" },
   { id: "coding_relay",   name: "Coding Relay", type: "TECH TYPE",     imgSrc: "/events/coding-relay.png", iconBg: "#8e44ad" },
   { id: "dsa_smackdown",  name: "DSA",          type: "LOGIC TYPE",    imgSrc: "/events/dsa.png",          iconBg: "#e67e22" },
   { id: "technoseek",     name: "Technoseek",   type: "STRATEGY TYPE", imgSrc: "/events/technoseek.png",   iconBg: "#16a085" },
-];
-
-const BRANCHES: { value: string; label: string }[] = [
-  { value: "Artificial Intelligence and Machine Learning", label: "AI & ML" },
-  { value: "Aeronautical Engineering", label: "Aeronautical Engg" },
-  { value: "Automobile Engineering", label: "Automobile Engg" },
-  { value: "Biotechnology", label: "Biotechnology" },
-  { value: "Chemical Engineering", label: "Chemical Engg" },
-  { value: "Civil Engineering", label: "Civil Engg" },
-  { value: "Computer Science and Business Systems", label: "CS & Business Systems" },
-  { value: "Computer Science and Design", label: "CS & Design" },
-  { value: "Computer Science and Engineering", label: "CSE" },
-  { value: "Computer Science & Engineering (Cyber Security)", label: "CSE (Cyber Security)" },
-  { value: "Computer Science & Engineering (Data Science)", label: "CSE (Data Science)" },
-  { value: "Computer Science & Engineering (IoT and Cyber Security Including Block Chain Technology)", label: "CSE (IoT & Cyber Security)" },
-  { value: "Electrical & Electronics Engineering", label: "EEE" },
-  { value: "Electronics & Communication Engineering", label: "ECE" },
-  { value: "Electronics and Instrumentation Engineering", label: "EIE" },
-  { value: "Electronics and Telecommunication Engineering", label: "E&TC" },
-  { value: "Information Science and Engineering", label: "ISE" },
-  { value: "Mechanical Engineering", label: "Mechanical Engg" },
-  { value: "Medical Electronics Engineering", label: "Medical Electronics" },
-  { value: "Robotics and Artificial Intelligence", label: "Robotics & AI" },
 ];
 
 interface MemberData {
@@ -64,6 +33,7 @@ interface MemberData {
   phone: string;
   semester: string;
   branch: string;
+  college: string;
 }
 
 interface FieldErrorState {
@@ -73,7 +43,7 @@ interface FieldErrorState {
   phone?: string;
 }
 
-const BLANK_MEMBER: MemberData = { name: "", usn: "", email: "", phone: "", semester: "", branch: "" };
+const BLANK_MEMBER: MemberData = { name: "", usn: "", email: "", phone: "", semester: "", branch: "", college: "" };
 
 // ─── Validation Helper ────────────────────────────────────────────────────────
 
@@ -109,7 +79,7 @@ export default function RegisterPage() {
 
   const [errors, setErrors] = useState<FieldErrorState[]>([{}, {}, {}]);
 
-  const isTeam = selectedEvent !== "" && TEAM_EVENTS.includes(selectedEvent as EventId);
+  const isTeam = selectedEvent !== "" && TEAM_EVENT_IDS.includes(selectedEvent as EventId);
 
   const updateMember = (index: 0 | 1 | 2, field: keyof MemberData, value: string) => {
     const error = getFieldError(field, value);
@@ -268,6 +238,7 @@ export default function RegisterPage() {
             <div className="space-y-8">
               <Section title="ACADEMIC DETAILS" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
+                <SelectField label="College" placeholder="Select college" value={members[0].college} options={COLLEGES.map((c) => ({ value: c, label: c }))} onChange={(v: string) => updateMember(0, "college", v)} />
                 <SelectField label="Semester" placeholder="Select semester" value={members[0].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v: string) => updateMember(0, "semester", v)} />
                 <BranchSelectField label="Branch" placeholder="Select branch" value={members[0].branch} onChange={(v) => updateMember(0, "branch", v)} />
               </div>
@@ -279,6 +250,7 @@ export default function RegisterPage() {
                   <Section title="MEMBER 2 DETAILS" />
                   <MemberForm member={members[1]} errors={errors[1]} index={1} label="Member 2" onChange={updateMember} showLabel />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
+                    <SelectField label="College" placeholder="Select college" value={members[1].college} options={COLLEGES.map((c) => ({ value: c, label: c }))} onChange={(v) => updateMember(1, "college", v)} />
                     <SelectField label="Semester" placeholder="Select semester" value={members[1].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(1, "semester", v)} />
                     <BranchSelectField label="Branch" placeholder="Select branch" value={members[1].branch} onChange={(v) => updateMember(1, "branch", v)} />
                   </div>
@@ -287,6 +259,7 @@ export default function RegisterPage() {
                   <Section title="MEMBER 3 DETAILS" />
                   <MemberForm member={members[2]} errors={errors[2]} index={2} label="Member 3" onChange={updateMember} showLabel />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
+                    <SelectField label="College" placeholder="Select college" value={members[2].college} options={COLLEGES.map((c) => ({ value: c, label: c }))} onChange={(v) => updateMember(2, "college", v)} />
                     <SelectField label="Semester" placeholder="Select semester" value={members[2].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(2, "semester", v)} />
                     <BranchSelectField label="Branch" placeholder="Select branch" value={members[2].branch} onChange={(v) => updateMember(2, "branch", v)} />
                   </div>

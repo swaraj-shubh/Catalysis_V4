@@ -26,6 +26,9 @@ export async function POST(req: Request) {
     if (!event || !member1?.usn) {
       return NextResponse.json({ error: "Lead member USN is required." }, { status: 400 });
     }
+    if (!["DSCE", "DSATM", "DSU"].includes(member1?.college)) {
+      return NextResponse.json({ error: "Please select a valid college." }, { status: 400 });
+    }
 
     // 2. Extract and Normalize USNs
     const m1_usn = member1.usn.trim().toUpperCase();

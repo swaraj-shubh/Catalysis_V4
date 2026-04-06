@@ -122,10 +122,8 @@ function heightPct(from: string, till: string): string {
 }
 
 // ── Event Card ────────────────────────────────────────────────────────────────
-function EventCard({ item, delay = 0 }: { item: TimelineEvent; delay?: number }) {
+function EventCard({ item, delay = 0, isDark }: { item: TimelineEvent; delay?: number; isDark: boolean }) {
   const router = useRouter();
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const dayIdx = item.day - 1;
   const accent      = isDark ? DAY_DARK[dayIdx] : DAY_COLORS[dayIdx];
   const accentGlow  = DAY_GLOW[dayIdx];
@@ -241,9 +239,7 @@ function EventCard({ item, delay = 0 }: { item: TimelineEvent; delay?: number })
 }
 
 // ── Y-Axis ────────────────────────────────────────────────────────────────────
-function YAxis({ height }: { height: number }) {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
+function YAxis({ height, isDark }: { height: number; isDark: boolean }) {
   return (
     <div className="relative flex-shrink-0" style={{ width: 58, height }}>
       {TIME_TICKS.map((tick) => (
@@ -271,15 +267,13 @@ function YAxis({ height }: { height: number }) {
 const HEADER_H = 68;
 const GRID_H   = 1200;
 
-function DesktopTimeline() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
+function DesktopTimeline({ isDark }: { isDark: boolean }) {
   const days = [1, 2] as const;
 
   return (
     <div className="hidden lg:flex gap-0 w-full">
       <div style={{ paddingTop: HEADER_H + 16 }}>
-        <YAxis height={GRID_H} />
+        <YAxis height={GRID_H} isDark={isDark} />
       </div>
 
       {/* Axis separator */}
@@ -367,7 +361,7 @@ function DesktopTimeline() {
                       paddingRight: item.widthPct < 100 ? 3 : 0,
                     }}
                   >
-                    <EventCard item={item} />
+                    <EventCard item={item} isDark={isDark} />
                   </div>
                 ))}
               </div>
@@ -382,15 +376,12 @@ function DesktopTimeline() {
 // ── Mobile ────────────────────────────────────────────────────────────────────
 const MOBILE_GRID_H = 1100;
 
-function MobileTimeline() {
+function MobileTimeline({ isDark }: { isDark: boolean }) {
   const [activeDay, setActiveDay] = useState<1 | 2>(1);
   const [fade, setFade] = useState(true);
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const days: (1 | 2)[] = [1, 2];
   const events = timeline.filter((e) => e.day === activeDay);
   const color  = isDark ? DAY_DARK[activeDay - 1] : DAY_COLORS[activeDay - 1];
-  const glow   = DAY_GLOW[activeDay - 1];
 
   const switchDay = (day: 1 | 2) => {
     if (day === activeDay) return;
@@ -441,7 +432,7 @@ function MobileTimeline() {
       </div>
 
       <div className="flex gap-0 transition-opacity duration-200 ease-in-out" style={{ opacity: fade ? 1 : 0 }}>
-        <YAxis height={MOBILE_GRID_H} />
+        <YAxis height={MOBILE_GRID_H} isDark={isDark} />
         <div
           className="flex-shrink-0 w-px"
           style={{
@@ -476,7 +467,7 @@ function MobileTimeline() {
                 paddingRight: item.widthPct < 100 ? 3 : 0,
               }}
             >
-              <EventCard item={item} delay={i * 60} />
+              <EventCard item={item} delay={i * 60} isDark={isDark} />
             </div>
           ))}
         </div>
@@ -637,8 +628,8 @@ export default function Timeline() {
 
         {/* Timeline grid */}
         <div className={`w-full reveal reveal-up ${inView} reveal-delay-2`}>
-          <MobileTimeline />
-          <DesktopTimeline />
+          <MobileTimeline isDark={isDark} />
+          <DesktopTimeline isDark={isDark} />
         </div>
       </Container>
     </section>
