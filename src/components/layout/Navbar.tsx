@@ -170,7 +170,7 @@ export default function Navbar() {
           </div>
         </button>
 
-        <div className="flex flex-col h-full pt-28 px-8 pb-10">
+        <div className="flex flex-col h-full pt-20 px-8 pb-10">
           <div className="flex flex-col gap-5">
             {navItems.map((item, index) => {
               const isActive = isHome && activeSection === item.id;
@@ -203,7 +203,7 @@ export default function Navbar() {
               onClick={handleRegister}
               className="w-full relative group overflow-hidden bg-[#DD273E] text-white text-xl font-bold px-8 py-5 rounded-2xl border-4 border-black shadow-[6px_6px_0px_black] active:shadow-none active:translate-x-1.5 active:translate-y-1.5 transition-all"
             >
-              <div className="relative z-10 flex items-center justify-center gap-3">
+              <div className="relative z-10 text-lg flex items-center justify-center gap-3">
                 REGISTER NOW
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </div>
