@@ -232,8 +232,7 @@ function AboutLeft() {
           gaming, speed typing, and startup pitching.
         </p>
         <p>
-          April 17 &amp; 18, 2026 at DSCE Bangalore. Open to students from all branches across DSCE, DSU, and DSATM.
-          A space to learn, compete, collaborate, and grow.
+          April 17 &amp; 18, 2026 at DSCE Bangalore. A space to learn, compete, collaborate, and grow.
         </p>
       </div>
     </div>

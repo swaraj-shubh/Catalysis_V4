@@ -19,7 +19,7 @@ const qna = [
   {
     question: "Who can participate in Catalysis?",
     answer:
-      "The fest is open to all students from DSCE, DSU, and DSATM. Students from all three campuses are welcome to join!",
+      "Catalysis V4.0 is open to all students of DSCE Bangalore. Students from all branches are welcome to participate!",
 },
   {
     question: "What type of events can I expect?",
