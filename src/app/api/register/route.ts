@@ -6,7 +6,7 @@ import Participant, { TEAM_EVENTS } from "@/models/Participant";
 import { sendRegistrationEmail } from "@/lib/emailService";
 
 const EVENT_NAMES: Record<string, string> = {
-  pitch_perfect: "Pitch Perfect",
+  pitch_perfect: "PitchDexs",
   typemaster: "Typemaster",
   clash_royale: "Valorant Tournament",
   coding_relay: "Coding Relay",

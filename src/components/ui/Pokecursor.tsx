@@ -40,17 +40,9 @@ const CURSOR_DATA_URI = `data:image/svg+xml,${encodeURIComponent(`
 `)}`
 
 // ---------------------------------------------------------------------------
-// CSS injected once — defines cursor + click-burst keyframes
+// CSS injected once — click-burst keyframes only (cursor removed)
 // ---------------------------------------------------------------------------
 const GLOBAL_CSS = `
-  *,
-  *::before,
-  *::after,
-  a, button, input, textarea, select, label,
-  [role="button"], [tabindex] {
-    cursor: url("${CURSOR_DATA_URI}") 16 16, auto !important;
-  }
-
   .poke-burst {
     position: fixed;
     pointer-events: none;
