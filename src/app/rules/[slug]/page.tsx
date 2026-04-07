@@ -88,9 +88,7 @@ const RulesPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
               </h3>
               <ul className="list-disc pl-6 text-[18px] md:text-[20px] leading-[27px] font-['Nunito'] font-medium text-[#000000] dark:text-white/80 space-y-2 max-w-[456px]">
                 {event.rules.map((rule, idx) => (
-                  <li key={idx} className={rule.startsWith("-") ? "list-none -ml-6 pl-6" : ""}>
-                    {rule}
-                  </li>
+                  <li key={idx}>{rule}</li>
                 ))}
               </ul>
             </div>
@@ -126,9 +124,7 @@ const RulesPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
               </h3>
               <ul className="list-disc pl-6 text-[18px] md:text-[20px] leading-[27px] font-['Nunito'] font-medium text-[#000000] dark:text-white/80 space-y-2 max-w-[462px]">
                 {event.requirements.map((req, idx) => (
-                  <li key={idx} className={req.startsWith("-") ? "list-none -ml-6 pl-6" : ""}>
-                    {req}
-                  </li>
+                  <li key={idx}>{req}</li>
                 ))}
               </ul>
             </div>

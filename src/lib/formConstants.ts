@@ -7,18 +7,20 @@ export const EVENT_IDS = [
   "coding_relay",
   "dsa_smackdown",
   "pitch_perfect",
+  "prompt_wars",
 ] as const;
 export type EventId = (typeof EVENT_IDS)[number];
 
 export const TEAM_EVENT_IDS: readonly EventId[] = ["technoseek", "coding_relay"];
 
 export const EVENT_LABELS: Record<EventId, string> = {
-  pitch_perfect: "PitchDexs",
+  pitch_perfect: "Ideathon",
   typemaster:    "Typemaster",
   clash_royale:  "Clash Royale",
   coding_relay:  "Code Relay",
   dsa_smackdown: "DSA Event",
   technoseek:    "Technoseek",
+  prompt_wars:   "Prompt Wars",
 };
 
 export const BRANCHES: { value: string; label: string }[] = [

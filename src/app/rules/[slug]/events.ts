@@ -26,7 +26,7 @@ export const eventData: Record<string, EventDetails> = {
       "Standard Tournament rules apply",
       "No toxic behavior or BMing (instant warning)",
       "Bring your own fully charged device",
-      "- Exploiting game bugs is strictly forbidden"
+      "Exploiting game bugs is strictly forbidden"
     ],
     prizes: [
       "🥇 1st Place: Rs. 1,000 + Certificate",
@@ -40,7 +40,7 @@ export const eventData: Record<string, EventDetails> = {
     requirements: [
       "Valid Supercell account",
       "Stable internet connection",
-      "- Student ID proof"
+      "Student ID proof"
     ]
   },
   "dsa-smackdown": {
@@ -55,13 +55,12 @@ export const eventData: Record<string, EventDetails> = {
       "Individual participation only",
       "Plagiarism checks will be strictly enforced post-event",
       "Scoring is based on test cases passed and time complexity",
-      "- Accessing external code repositories is forbidden"
+      "Accessing external code repositories is forbidden"
     ],
     prizes: [
       "🥇 1st Place: Rs. 1,500 + Certificate",
       "🥈 2nd Place: Rs. 1,000 + Certificate",
-      "🥉 3rd Place: Rs. 500 + Certificate",
-      "Total Prize Pool: Rs. 3,000"
+      "Total Prize Pool: Rs. 2,500"
     ],
     schedule: [
       "Date: Day 2 - Friday, 18 April",
@@ -70,7 +69,7 @@ export const eventData: Record<string, EventDetails> = {
     requirements: [
       "Active HackerRank or LeetCode account",
       "Bring your own laptop (recommended)",
-      "- Student ID proof"
+      "Student ID proof"
     ]
   },
   "typemaster": {
@@ -86,26 +85,25 @@ export const eventData: Record<string, EventDetails> = {
       "Participants must use the assigned system",
       "No external keyboards allowed",
       "Any malpractice leads to disqualification",
-      "- Decisions by judges are final"
+      "Decisions by judges are final"
     ],
     prizes: [
       "🥇 1st Place: Rs. 1,500 + Certificate",
       "🥈 2nd Place: Rs. 1,000 + Certificate",
-      "🥉 3rd Place: Rs. 500 + Certificate",
-      "Total Prize Pool: Rs. 3,000"
+      "Total Prize Pool: Rs. 2,500"
     ],
     schedule: [
-      "Date: Day 2 - Friday, 18 April",
-      "Time: 11:30 AM - 12:30 PM"
+      "Day 1 - Friday, 17 April: 10:00 AM - 4:00 PM",
+      "Day 2 - Saturday, 18 April: All Day"
     ],
     requirements: [
       "Basic typing skills",
       "Student ID / Registration proof",
-      "- Punctuality"
+      "Punctuality"
     ]
   },
   "pitchdexs": {
-    title: "PitchDexs",
+    title: "Ideathon",
     subtitle: "Turn your ideas into impact with the power of persuasion",
     image: "/pokemons/jigglypuff.svg",
     heroColor: "#FFB6C1",
@@ -116,7 +114,7 @@ export const eventData: Record<string, EventDetails> = {
       "Presentations must not exceed 5 minutes",
       "A 3-minute Q&A session from judges will follow",
       "Live prototypes or Figma designs yield bonus points",
-      "- All business ideas must be original"
+      "All business ideas must be original"
     ],
     prizes: [
       "🥇 Best Pitch: Rs. 1,000 + Certificate",
@@ -124,13 +122,42 @@ export const eventData: Record<string, EventDetails> = {
       "Total Prize Pool: Rs. 1,750"
     ],
     schedule: [
-      "Date: Day 2 - Friday, 18 April",
-      "Time: 2:30 PM - 3:30 PM"
+      "Date: Day 1 - Friday, 17 April",
+      "Time: 10:00 AM - 12:00 PM"
     ],
     requirements: [
       "Pitch Deck (.PPT or .PDF) submitted prior to event",
       "Formal or Smart Casual attire",
-      "- Student ID proof"
+      "Student ID proof"
+    ]
+  },
+  "prompt-wars": {
+    title: "Prompt Wars",
+    subtitle: "Engineer the perfect prompt and outthink every challenger",
+    image: "/pokemons/chatot.png",
+    heroColor: "#D6E8F7",
+    selectionColor: "#4A8FD4",
+    tags: ["AI Prompting", "Creative", "Individual"],
+    description: "Craft the most precise, creative, and powerful AI prompts to solve a series of challenges. You will be judged on accuracy, creativity, and the effectiveness of your prompt engineering skills.",
+    rules: [
+      "Individual participation only",
+      "Participants must use the provided AI interface",
+      "No pre-written prompts or external assistance allowed",
+      "Decisions by judges are final"
+    ],
+    prizes: [
+      "🥇 1st Place: Rs. 1,000 + Certificate",
+      "🥈 2nd Place: Rs. 750 + Certificate",
+      "Total Prize Pool: Rs. 1,750"
+    ],
+    schedule: [
+      "Date: Day 2 - Saturday, 18 April",
+      "Time: 2:00 PM - 3:00 PM"
+    ],
+    requirements: [
+      "Basic understanding of AI tools",
+      "Student ID / Registration proof",
+      "Punctuality"
     ]
   },
   "technoseek": {
@@ -145,13 +172,12 @@ export const eventData: Record<string, EventDetails> = {
       "Team of 4 members required",
       "No outside internet assistance for offline clues",
       "Any destruction of campus property leads to disqualification",
-      "- Decisions by the clue-masters are final"
+      "Decisions by the clue-masters are final"
     ],
     prizes: [
       "🥇 1st Place Team: Rs. 5,000 + Trophy",
       "🥈 2nd Place Team: Rs. 3,000 + Certificate",
-      "🥉 3rd Place Team: Rs. 2,000 + Certificate",
-      "Total Prize Pool: Rs. 10,000"
+      "Total Prize Pool: Rs. 8,000"
     ],
     schedule: [
       "Date: Day 1 - Thursday, 17 April",
@@ -161,7 +187,7 @@ export const eventData: Record<string, EventDetails> = {
       "Team of exactly 4 members",
       "At least one fully charged smartphone per team",
       "QR Code Scanner app installed",
-      "- Student ID proof"
+      "Student ID proof"
     ]
   },
   "code-relay": {
@@ -176,13 +202,12 @@ export const eventData: Record<string, EventDetails> = {
       "Teams of exactly 3 members required",
       "Absolutely no verbal communication during handoffs",
       "Standard libraries only; no external APIs allowed",
-      "- Code must compile to be evaluated"
+      "Code must compile to be evaluated"
     ],
     prizes: [
       "🥇 1st Place Team: Rs. 4,000 + Trophy",
       "🥈 2nd Place Team: Rs. 2,500 + Certificate",
-      "🥉 3rd Place Team: Rs. 1,500 + Certificate",
-      "Total Prize Pool: Rs. 8,000"
+      "Total Prize Pool: Rs. 6,500"
     ],
     schedule: [
       "Date: Day 1 - Thursday, 17 April",
@@ -192,7 +217,7 @@ export const eventData: Record<string, EventDetails> = {
       "Team of exactly 3 members",
       "Strong logic fundamentals",
       "Familiarity with C++, Java, or Python",
-      "- Student ID proof"
+      "Student ID proof"
     ]
   }
 };

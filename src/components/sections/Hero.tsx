@@ -139,8 +139,7 @@ function EventHighlightsCard() {
 
       <div className="flex flex-col items-center gap-1">
         <p className="text-black dark:text-white font-black text-lg">2 Days</p>
-        <p className="text-black dark:text-white font-black text-lg">6 Events</p>
-        <p className="text-black dark:text-white font-black text-lg">100+ Participants</p>
+        <p className="text-black dark:text-white font-black text-lg">7 Events</p>
       </div>
 
       <div className="mt-auto mb-8 relative flex items-center justify-center w-full">
@@ -231,16 +230,6 @@ export default function Hero() {
 
       <div className={`relative z-10 text-center px-4 max-w-5xl reveal reveal-up ${inView} reveal-delay-1`}>
 
-        {/* Organiser badge */}
-        <div className="flex items-center justify-center gap-2 flex-wrap mb-3">
-          <span className="inline-flex items-center gap-1.5 bg-white dark:bg-[#160030] border-2 border-black dark:border-white/20 rounded-full px-4 py-1 text-[11px] font-black tracking-widest uppercase text-[#3A001D] dark:text-white/80 shadow-[2px_2px_0_rgba(0,0,0,1)] dark:shadow-none">
-            <span className="w-2 h-2 rounded-full bg-[#DD273E] inline-block" />
-            Club Genesis &nbsp;·&nbsp; ISE Dept, DSCE
-          </span>
-          <span className="inline-flex items-center bg-[#DD273E] border-2 border-black dark:border-transparent rounded-full px-4 py-1 text-[11px] font-black tracking-widest uppercase text-white shadow-[2px_2px_0_rgba(0,0,0,1)] dark:shadow-[0_0_10px_rgba(255,45,85,0.4)]">
-            V4.0
-          </span>
-        </div>
 
        <h1 className="
         font-gliker
@@ -252,8 +241,7 @@ export default function Hero() {
         w-full max-w-[984px]
         px-4
       ">
-        Where Ideas Ignite.
-        Innovation Accelerates.
+        Catalysis V4.0
       </h1>
 
         <p className="mt-4 md:mt-6 text-[#3b0a1e] dark:text-white/60 font-medium
@@ -262,7 +250,7 @@ export default function Hero() {
           text-[13px] sm:text-sm md:text-lg
           leading-relaxed md:leading-relaxed"
         >
-          Two days, six events, one arena. Catalysis V4.0 — organised by Club Genesis, ISE Dept, DSCE Bangalore — brings together coders, strategists, and creators to compete, collaborate, and rise to the top.
+          Two days, seven events, one arena. Catalysis V4.0 is organised by Club Genesis, ISE Dept, DSCE Bangalore. It brings together coders, strategists, and creators to compete, collaborate, and rise to the top.
         </p>
       </div>
 <div className={`relative w-full max-w-6xl mt-4 md:mt-5 reveal reveal-up ${inView} reveal-delay-2`}>
