@@ -24,7 +24,7 @@ const qna = [
   {
     question: "What type of events can I expect?",
     answer:
-      "The fest includes Technoseek (scavenger hunt), Coding Relay (team coding), DSA Smackdown (algorithms), Typemaster (typing speed), Clash Royale (gaming), and PitchDexs (startup pitching).",
+      "The fest includes 7 events across 2 days: Ideathon (startup pitching), Prompt Wars (AI prompting), Technoseek (scavenger hunt), Coding Relay (team coding), DSA Smackdown (algorithms), Typemaster (all-day typing speed), and Clash Royale (gaming).",
   },
   {
     question: "Can non-IT students join the action?",
@@ -34,7 +34,7 @@ const qna = [
   {
     question: "Will there be prizes?",
     answer:
-      "Yes! There is a total prize pool of over Rs. 25,000 across all events, plus trophies, merit certificates, and bragging rights.",
+      "Yes! There is a total prize pool of over Rs. 30,000 across all events, plus trophies, merit certificates, and bragging rights.",
   },
   {
     question: "How can I participate in Catalysis V4?",

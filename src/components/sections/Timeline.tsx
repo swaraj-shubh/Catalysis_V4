@@ -18,12 +18,13 @@ export interface TimelineEvent {
   timeTill: string;
   description: string | null;
   isEvent: boolean;
+  isAllDay?: boolean;
   imagePath: string | null;
   panelColor: string;
   hasRegister: boolean;
   slug?: string;
-  leftPct: number;   // 0 or 52
-  widthPct: number;  // 48 or 100
+  leftPct: number;
+  widthPct: number;
 }
 
 const DAY_COLORS = ["#DD273E", "#2E8A3E"] as const;
@@ -42,7 +43,7 @@ const timeline: TimelineEvent[] = [
   },
   {
     day: 1, date: "17/04", dayLabel: "FRIDAY",
-    title: "PITCHDEXS", venue: "ROOM 205",
+    title: "IDEATHON", venue: "ROOM 205",
     timeFrom: "10:00", timeTill: "12:00",
     description: "Pitch your boldest tech idea to a panel of judges. Innovate, present, and dominate.",
     isEvent: true, imagePath: "/pokemons/jigglypuff.svg", panelColor: "#FFD6DC", hasRegister: true, slug: "pitchdexs",
@@ -64,6 +65,15 @@ const timeline: TimelineEvent[] = [
     isEvent: true, imagePath: "/pokemons/arceus.svg", panelColor: "#FFD6DC", hasRegister: true, slug: "clash-royale",
     leftPct: 0, widthPct: 48,
   },
+  // All-day event for Day 1
+  {
+    day: 1, date: "17/04", dayLabel: "FRIDAY",
+    title: "TYPEMASTER", venue: "ROOM 205",
+    timeFrom: "10:00", timeTill: "16:00",
+    description: "Type fast. Stay accurate. Only the swiftest survive.",
+    isEvent: true, isAllDay: true, imagePath: "/pokemons/rayquaza.svg", panelColor: "#FFE4EA", hasRegister: true, slug: "typemaster",
+    leftPct: 0, widthPct: 100,
+  },
 
   // ── Day 2 · SATURDAY 18/04 ────────────────────────────────────────────────
   {
@@ -80,7 +90,7 @@ const timeline: TimelineEvent[] = [
     timeFrom: "12:15", timeTill: "14:00",
     description: "Tag-team coding under pressure. Pass the keyboard and never break the chain.",
     isEvent: true, imagePath: "/pokemons/ditto.svg", panelColor: "#DAEEDD", hasRegister: true, slug: "code-relay",
-    leftPct: 0, widthPct: 100,
+    leftPct: 0, widthPct: 48,
   },
   {
     day: 2, date: "18/04", dayLabel: "SATURDAY",
@@ -92,11 +102,28 @@ const timeline: TimelineEvent[] = [
   },
   {
     day: 2, date: "18/04", dayLabel: "SATURDAY",
+    title: "PROMPT WARS", venue: "ROOM 206",
+    timeFrom: "14:00", timeTill: "15:00",
+    description: "Craft the perfect prompt. Engineer creative, precise, and powerful AI responses to win.",
+    isEvent: true, imagePath: "/pokemons/chatot.png", panelColor: "#D6F0DC", hasRegister: true, slug: "prompt-wars",
+    leftPct: 52, widthPct: 48,
+  },
+  {
+    day: 2, date: "18/04", dayLabel: "SATURDAY",
     title: "PRIZE DISTRIBUTION", venue: "MAIN AUDITORIUM",
     timeFrom: "15:00", timeTill: "16:30",
     description: null,
     isEvent: false, imagePath: null, panelColor: "#EEF8F0", hasRegister: false,
     leftPct: 52, widthPct: 48,
+  },
+  // All-day event for Day 2
+  {
+    day: 2, date: "18/04", dayLabel: "SATURDAY",
+    title: "TYPEMASTER", venue: "ROOM 205",
+    timeFrom: "09:00", timeTill: "16:30",
+    description: "Type fast. Stay accurate. Only the swiftest survive.",
+    isEvent: true, isAllDay: true, imagePath: "/pokemons/rayquaza.svg", panelColor: "#D6F0DC", hasRegister: true, slug: "typemaster",
+    leftPct: 0, widthPct: 100,
   },
 ];
 
@@ -119,6 +146,98 @@ function topPct(time: string): string {
 }
 function heightPct(from: string, till: string): string {
   return `${((toMin(till) - toMin(from)) / SPAN) * 100}%`;
+}
+
+// ── All-Day Banner ─────────────────────────────────────────────────────────────
+function AllDayBanner({ day, isDark }: { day: 1 | 2; isDark: boolean }) {
+  const router = useRouter();
+  const allDayEvents = timeline.filter((e) => e.day === day && e.isAllDay);
+  const accent = isDark ? DAY_DARK[day - 1] : DAY_COLORS[day - 1];
+  const glow   = DAY_GLOW[day - 1];
+
+  if (allDayEvents.length === 0) return <div className="mb-3" style={{ height: 52 }} />;
+
+  return (
+    <div className="flex flex-col gap-2 mb-3">
+      {allDayEvents.map((event, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-2 sm:gap-3 px-3 py-2 rounded-xl"
+          style={{
+            height: 52,
+            background: isDark
+              ? `linear-gradient(135deg, ${accent}18 0%, ${accent}08 100%)`
+              : `${accent}15`,
+            border: `1.5px dashed ${isDark ? `${accent}60` : `${accent}80`}`,
+            boxShadow: isDark ? `0 0 12px ${glow}` : "none",
+          }}
+        >
+          {/* Icon */}
+          {event.imagePath && (
+            <div className="relative w-7 h-7 flex-shrink-0">
+              <Image
+                src={event.imagePath}
+                alt={event.title}
+                fill
+                sizes="28px"
+                className="object-contain"
+                style={isDark ? { filter: `drop-shadow(0 0 4px ${accent}80)` } : {}}
+              />
+            </div>
+          )}
+
+          {/* Label */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <p className={`font-black text-[12px] sm:text-[13px] leading-none ${isDark ? "text-white" : "text-[#3A001D]"}`}>
+                {event.title}
+              </p>
+              <span
+                className="text-[9px] font-bold px-2 py-0.5 rounded-full flex-shrink-0"
+                style={{
+                  background: isDark ? `${accent}25` : `${accent}20`,
+                  color: isDark ? accent : accent,
+                  border: `1px solid ${isDark ? `${accent}50` : `${accent}60`}`,
+                }}
+              >
+                ALL DAY
+              </span>
+            </div>
+            <p className={`text-[9px] font-semibold tracking-widest uppercase mt-0.5 ${isDark ? "text-white/30" : "text-black/40"}`}>
+              {event.venue} · {event.timeFrom}–{event.timeTill}
+            </p>
+          </div>
+
+          {/* Actions */}
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            <button
+              onClick={() => router.push("/register")}
+              className="text-white text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full border-2 transition-all hover:scale-105 active:scale-95"
+              style={{
+                backgroundColor: accent,
+                borderColor: isDark ? accent : "#000",
+                boxShadow: isDark ? `0 0 8px ${glow}` : "1px 1px 0 rgba(0,0,0,0.2)",
+              }}
+            >
+              Register
+            </button>
+            {event.slug && (
+              <Link
+                href={`/rules/${event.slug}`}
+                className={`text-[9px] font-bold px-2.5 py-1 rounded-full border transition-all hover:scale-105 active:scale-95 flex items-center gap-0.5 group ${
+                  isDark ? "text-white/60 hover:text-white" : "text-black/70 hover:text-black bg-white"
+                }`}
+                style={{ borderColor: isDark ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.25)" }}
+              >
+                Details
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              </Link>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 // ── Event Card ────────────────────────────────────────────────────────────────
@@ -264,15 +383,18 @@ function YAxis({ height, isDark }: { height: number; isDark: boolean }) {
 }
 
 // ── Desktop ───────────────────────────────────────────────────────────────────
-const HEADER_H = 68;
-const GRID_H   = 1200;
+const HEADER_H  = 68;
+const ALLDAY_H  = 52;  // height reserved for the all-day strip
+const GRID_GAP  = 12;  // gap (px) between header→allday and allday→grid
+const BEFORE_GRID = HEADER_H + GRID_GAP + ALLDAY_H + GRID_GAP; // = 144
+const GRID_H    = 1200;
 
 function DesktopTimeline({ isDark }: { isDark: boolean }) {
   const days = [1, 2] as const;
 
   return (
     <div className="hidden lg:flex gap-0 w-full">
-      <div style={{ paddingTop: HEADER_H + 16 }}>
+      <div style={{ paddingTop: BEFORE_GRID }}>
         <YAxis height={GRID_H} isDark={isDark} />
       </div>
 
@@ -280,7 +402,7 @@ function DesktopTimeline({ isDark }: { isDark: boolean }) {
       <div
         className="flex-shrink-0 w-px"
         style={{
-          marginTop: HEADER_H + 16,
+          marginTop: BEFORE_GRID,
           height: GRID_H,
           background: isDark
             ? "linear-gradient(to bottom, transparent, rgba(124,58,237,0.5) 15%, rgba(124,58,237,0.3) 85%, transparent)"
@@ -290,18 +412,20 @@ function DesktopTimeline({ isDark }: { isDark: boolean }) {
 
       <div className="grid grid-cols-2 gap-4 flex-1 pl-4">
         {days.map((day) => {
-          const events  = timeline.filter((e) => e.day === day);
-          const sample  = events[0];
-          const color   = isDark ? DAY_DARK[day - 1] : DAY_COLORS[day - 1];
-          const glow    = DAY_GLOW[day - 1];
+          const allEvents   = timeline.filter((e) => e.day === day);
+          const timedEvents = allEvents.filter((e) => !e.isAllDay);
+          const sample      = allEvents[0];
+          const color       = isDark ? DAY_DARK[day - 1] : DAY_COLORS[day - 1];
+          const glow        = DAY_GLOW[day - 1];
 
           return (
             <div key={day} className="flex flex-col">
               {/* Day header */}
               <div
-                className="rounded-2xl flex items-center justify-between px-5 flex-shrink-0 mb-4"
+                className="rounded-2xl flex items-center justify-between px-5 flex-shrink-0"
                 style={{
                   height: HEADER_H,
+                  marginBottom: GRID_GAP,
                   background: isDark
                     ? `linear-gradient(135deg, ${color}20 0%, ${color}06 100%)`
                     : color,
@@ -318,7 +442,7 @@ function DesktopTimeline({ isDark }: { isDark: boolean }) {
                   >
                     {sample?.dayLabel} · DAY {day}
                   </p>
-                  <p className="font-black text-2xl leading-none tracking-tight" style={{ color: isDark ? "white" : "white" }}>
+                  <p className="font-black text-2xl leading-none tracking-tight" style={{ color: "white" }}>
                     {sample?.date}
                   </p>
                 </div>
@@ -335,7 +459,10 @@ function DesktopTimeline({ isDark }: { isDark: boolean }) {
                 </div>
               </div>
 
-              {/* Grid */}
+              {/* All-day strip */}
+              <AllDayBanner day={day} isDark={isDark} />
+
+              {/* Timed grid */}
               <div className="relative" style={{ height: GRID_H }}>
                 {TIME_TICKS.map((tick) => (
                   <div
@@ -347,7 +474,7 @@ function DesktopTimeline({ isDark }: { isDark: boolean }) {
                     }}
                   />
                 ))}
-                {events.map((item, i) => (
+                {timedEvents.map((item, i) => (
                   <div
                     key={i}
                     className="absolute"
@@ -380,8 +507,9 @@ function MobileTimeline({ isDark }: { isDark: boolean }) {
   const [activeDay, setActiveDay] = useState<1 | 2>(1);
   const [fade, setFade] = useState(true);
   const days: (1 | 2)[] = [1, 2];
-  const events = timeline.filter((e) => e.day === activeDay);
-  const color  = isDark ? DAY_DARK[activeDay - 1] : DAY_COLORS[activeDay - 1];
+  const allEvents   = timeline.filter((e) => e.day === activeDay);
+  const timedEvents = allEvents.filter((e) => !e.isAllDay);
+  const color       = isDark ? DAY_DARK[activeDay - 1] : DAY_COLORS[activeDay - 1];
 
   const switchDay = (day: 1 | 2) => {
     if (day === activeDay) return;
@@ -396,7 +524,8 @@ function MobileTimeline({ isDark }: { isDark: boolean }) {
 
   return (
     <div className="lg:hidden w-full">
-      <div className="flex gap-3 mb-6">
+      {/* Day tabs */}
+      <div className="flex gap-3 mb-4">
         {days.map((day, i) => {
           const dc = isDark ? DAY_DARK[i] : DAY_COLORS[i];
           return (
@@ -431,6 +560,15 @@ function MobileTimeline({ isDark }: { isDark: boolean }) {
         })}
       </div>
 
+      {/* All-day strip for active day */}
+      <div
+        className="transition-opacity duration-200 ease-in-out mb-4"
+        style={{ opacity: fade ? 1 : 0 }}
+      >
+        <AllDayBanner day={activeDay} isDark={isDark} />
+      </div>
+
+      {/* Timed grid */}
       <div className="flex gap-0 transition-opacity duration-200 ease-in-out" style={{ opacity: fade ? 1 : 0 }}>
         <YAxis height={MOBILE_GRID_H} isDark={isDark} />
         <div
@@ -453,7 +591,7 @@ function MobileTimeline({ isDark }: { isDark: boolean }) {
               }}
             />
           ))}
-          {events.map((item, i) => (
+          {timedEvents.map((item, i) => (
             <div
               key={i}
               className="absolute"
@@ -557,68 +695,6 @@ export default function Timeline() {
               </span>
             );
           })}
-        </div>
-
-        {/* Typemaster all-day banner */}
-        <div className={`mb-8 reveal reveal-up ${inView} reveal-delay-1`}>
-          <div
-            className="rounded-2xl border-2 px-4 sm:px-6 py-3 sm:py-4 flex items-center gap-4 flex-wrap"
-            style={{
-              background: "linear-gradient(135deg, rgba(221,39,62,0.08) 0%, rgba(221,39,62,0.03) 100%)",
-              borderColor: "#DD273E",
-              boxShadow: "3px 3px 0 rgba(0,0,0,1)",
-            }}
-          >
-            <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
-              <Image
-                src="/pokemons/rayquaza.svg"
-                alt="Typemaster"
-                fill
-                sizes="48px"
-                className="object-contain"
-                style={{ filter: "drop-shadow(0 2px 4px rgba(221,39,62,0.4))" }}
-              />
-            </div>
-
-            <div className="flex-1 min-w-0">
-              <p className="text-[10px] font-bold tracking-[0.2em] uppercase leading-none mb-1" style={{ color: "rgba(221,39,62,0.7)" }}>
-                All-Day Event · Both Days
-              </p>
-              <p className="font-black text-xl sm:text-2xl leading-none tracking-tight text-[#3A001D]">
-                TYPEMASTER
-              </p>
-              <p className="text-[11px] mt-0.5 text-black/50">
-                Type fast. Stay accurate. Only the swiftest survive.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2 flex-wrap">
-              {["17/04 · FRI", "18/04 · SAT"].map((d, i) => (
-                <span
-                  key={i}
-                  className="text-[10px] font-bold px-3 py-1 rounded-full border"
-                  style={{
-                    borderColor: "rgba(221,39,62,0.35)",
-                    color: "#DD273E",
-                    background: "rgba(221,39,62,0.08)",
-                  }}
-                >
-                  {d}
-                </span>
-              ))}
-              <Link
-                href="/rules/typemaster"
-                className="text-[10px] font-bold px-4 py-1.5 rounded-full border-2 transition-all hover:scale-105 flex items-center gap-1 group text-[#3A001D] bg-white"
-                style={{
-                  borderColor: "#DD273E",
-                  boxShadow: "2px 2px 0 rgba(0,0,0,0.5)",
-                }}
-              >
-                Details
-                <span className="transition-transform group-hover:translate-x-0.5">→</span>
-              </Link>
-            </div>
-          </div>
         </div>
 
         {/* Timeline grid */}

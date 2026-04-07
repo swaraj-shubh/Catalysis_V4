@@ -88,9 +88,7 @@ const RulesPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
               </h3>
               <ul className="list-disc pl-6 text-[18px] md:text-[20px] leading-[27px] font-['Nunito'] font-medium text-[#000000] dark:text-white/80 space-y-2 max-w-[456px]">
                 {event.rules.map((rule, idx) => (
-                  <li key={idx} className={rule.startsWith("-") ? "list-none -ml-6 pl-6" : ""}>
-                    {rule}
-                  </li>
+                  <li key={idx}>{rule}</li>
                 ))}
               </ul>
             </div>
@@ -126,9 +124,7 @@ const RulesPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
               </h3>
               <ul className="list-disc pl-6 text-[18px] md:text-[20px] leading-[27px] font-['Nunito'] font-medium text-[#000000] dark:text-white/80 space-y-2 max-w-[462px]">
                 {event.requirements.map((req, idx) => (
-                  <li key={idx} className={req.startsWith("-") ? "list-none -ml-6 pl-6" : ""}>
-                    {req}
-                  </li>
+                  <li key={idx}>{req}</li>
                 ))}
               </ul>
             </div>
@@ -139,19 +135,6 @@ const RulesPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
       {/* Footer / CTA Area */}
       <div className="flex flex-col items-center text-center py-20 relative z-10 bg-[#FFFFFF] dark:bg-[#0A0018]">
-        <Image
-          src="/catalysis.png"
-          alt="catalysis logo"
-          width={225}
-          height={82}
-          className="mx-auto mb-4 dark:brightness-0 dark:invert"
-          style={{ width: "auto", height: "auto" }}
-          priority
-        />
-        {/* Organiser credit */}
-        <p className="font-['Nunito'] font-bold text-[13px] text-[#DD273E] tracking-widest uppercase mb-8">
-          Club Genesis &nbsp;·&nbsp; ISE Dept, DSCE &nbsp;·&nbsp; Catalysis V4.0
-        </p>
         <h2 className="text-[48px] md:text-[68px] leading-[120%] font-['Gliker'] font-semibold text-[#000000] dark:text-white/80 max-w-[974px]">
           Ready to Prove Your Speed?
         </h2>

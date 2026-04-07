@@ -18,7 +18,8 @@ interface EventCard {
 }
 
 const ALL_EVENTS: EventCard[] = [
-  { id: "pitch_perfect",  name: "PitchDexs",    type: "STRATEGY TYPE", imgSrc: "/events/pitch.png",        iconBg: "#e74c3c" },
+  { id: "pitch_perfect",  name: "Ideathon",     type: "STRATEGY TYPE", imgSrc: "/events/pitch.png",        iconBg: "#e74c3c" },
+  { id: "prompt_wars",    name: "Prompt Wars",  type: "CREATIVE TYPE", imgSrc: "/pokemons/chatot.png",     iconBg: "#4A8FD4" },
   { id: "typemaster",     name: "Typemaster",   type: "SKILL TYPE",    imgSrc: "/events/typemaster.png",   iconBg: "#27ae60" },
   { id: "clash_royale",   name: "Clash Royale", type: "COMBAT TYPE",   imgSrc: "/events/clash-royale.png", iconBg: "#2980b9" },
   { id: "coding_relay",   name: "Coding Relay", type: "TECH TYPE",     imgSrc: "/events/coding-relay.png", iconBg: "#8e44ad" },
@@ -178,16 +179,6 @@ export default function RegisterPage() {
 
       {/* Hero Content */}
       <div className="text-center pt-28 pb-32 px-6">
-        {/* Organiser badge */}
-        <div className="flex items-center justify-center gap-2 flex-wrap mb-5">
-          <span className="inline-flex items-center gap-1.5 bg-white dark:bg-[#160030] border-2 border-black dark:border-white/20 rounded-full px-4 py-1 text-[11px] font-black tracking-widest uppercase text-[#3A001D] dark:text-white/80 shadow-[2px_2px_0_rgba(0,0,0,1)] dark:shadow-none">
-            <span className="w-2 h-2 rounded-full bg-[#DD273E] inline-block" />
-            Club Genesis &nbsp;·&nbsp; ISE Dept, DSCE
-          </span>
-          <span className="inline-flex items-center bg-[#DD273E] border-2 border-black dark:border-transparent rounded-full px-4 py-1 text-[11px] font-black tracking-widest uppercase text-white shadow-[2px_2px_0_rgba(0,0,0,1)] dark:shadow-[0_0_10px_rgba(255,45,85,0.4)]">
-            Catalysis V4.0
-          </span>
-        </div>
         <h1 className="text-[#2d1216] dark:text-white text-5xl md:text-6xl mb-4 leading-tight" style={{ fontFamily: "'Gliker', 'Fredoka One', cursive", fontWeight: 900 }}>
           Trainer Registration
         </h1>

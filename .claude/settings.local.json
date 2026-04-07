@@ -27,7 +27,10 @@
       "Bash(npx tsc:*)",
       "Bash(node:*)",
       "Bash(cd /d D:/CATALYSIS/new/Catalysis_V4)",
-      "Bash(echo \"exit:$?\")"
+      "Bash(echo \"exit:$?\")",
+      "Bash(magick --version)",
+      "Bash(convert --version)",
+      "Bash(grep:*)"
     ]
   }
 }

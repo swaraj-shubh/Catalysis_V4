@@ -119,23 +119,23 @@ function Badge({
 }
 
 const MOBILE_BADGES: BadgeData[] = [
-  { top: "5%",  left: "48%", label: "PitchDexs",     content: "STRATEGY TYPE", icon: "/about2/pitch.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555", path: "/pitchdexs" },
-  { top: "20%", left: "14%", label: "DSA Smackdown",  content: "PSYCHIC TYPE",  icon: "/about2/dsa.png",          primaryColor: "#4A9CC4", secondaryColor: "#2A6F9A", path: "/dsa-smackdown" },
-  { top: "20%", left: "82%", label: "Clash Royale",   content: "BATTLE TYPE",   icon: "/about2/valorent.png",     primaryColor: "#5BBF6A", secondaryColor: "#2E8A3E", path: "/clash-royale" },
-  { top: "50%", left: "14%", label: "Technoseek",     content: "ELECTRIC TYPE", icon: "/about2/technoseek.png",   primaryColor: "#A8CC55", secondaryColor: "#72981E", path: "/technoseek" },
-  { top: "50%", left: "82%", label: "Typemaster",     content: "SPEED TYPE",    icon: "/about2/typemaster.png",   primaryColor: "#B86ED4", secondaryColor: "#8A3BAF", path: "/typemaster" },
-  { top: "68%", left: "27%", label: "Code Relay",     content: "TEAM TYPE",     icon: "/about2/coding-relay.png", primaryColor: "#F5943A", secondaryColor: "#C8620E", path: "/code-relay" },
-  { top: "68%", left: "68%", label: "PitchDexs",     content: "CREATIVE TYPE", icon: "/about2/ui-ux.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555", path: "/pitchdexs" },
+  { top: "5%",  left: "48%", label: "Ideathon",       content: "STRATEGY TYPE", icon: "/pokemons/jigglypuff.svg", primaryColor: "#F28B8B", secondaryColor: "#E05555", path: "/pitchdexs" },
+  { top: "20%", left: "14%", label: "DSA Smackdown",  content: "PSYCHIC TYPE",  icon: "/pokemons/alakazam.svg",   primaryColor: "#4A9CC4", secondaryColor: "#2A6F9A", path: "/dsa-smackdown" },
+  { top: "20%", left: "82%", label: "Clash Royale",   content: "BATTLE TYPE",   icon: "/pokemons/arceus.svg",     primaryColor: "#5BBF6A", secondaryColor: "#2E8A3E", path: "/clash-royale" },
+  { top: "50%", left: "14%", label: "Technoseek",     content: "ELECTRIC TYPE", icon: "/pokemons/zoroark.svg",    primaryColor: "#A8CC55", secondaryColor: "#72981E", path: "/technoseek" },
+  { top: "50%", left: "82%", label: "Typemaster",     content: "SPEED TYPE",    icon: "/pokemons/rayquaza.svg",   primaryColor: "#B86ED4", secondaryColor: "#8A3BAF", path: "/typemaster" },
+  { top: "68%", left: "27%", label: "Code Relay",     content: "TEAM TYPE",     icon: "/pokemons/ditto.svg",      primaryColor: "#F5943A", secondaryColor: "#C8620E", path: "/code-relay" },
+  { top: "68%", left: "68%", label: "Prompt Wars",    content: "CREATIVE TYPE", icon: "/pokemons/chatot.png",     primaryColor: "#4A8FD4", secondaryColor: "#2A6BB0", path: "/prompt-wars" },
 ];
 
 const BADGES: BadgeData[] = [
-  { top: "11%", left: "45%", label: "PitchDexs",      content: "STRATEGY TYPE", icon: "/about2/pitch.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555", path: "/pitchdexs" },
-  { top: "24%", left: "25%", label: "DSA Smackdown",  content: "PSYCHIC TYPE",  icon: "/about2/dsa.png",          primaryColor: "#4A9CC4", secondaryColor: "#2A6F9A", path: "/dsa-smackdown" },
-  { top: "24%", left: "78%", label: "Clash Royale",   content: "BATTLE TYPE",   icon: "/about2/valorent.png",     primaryColor: "#5BBF6A", secondaryColor: "#2E8A3E", path: "/clash-royale" },
-  { top: "37%", left: "5%",  label: "Technoseek",     content: "ELECTRIC TYPE", icon: "/about2/technoseek.png",   primaryColor: "#A8CC55", secondaryColor: "#72981E", path: "/technoseek" },
-  { top: "37%", left: "58%", label: "Typemaster",     content: "SPEED TYPE",    icon: "/about2/typemaster.png",   primaryColor: "#B86ED4", secondaryColor: "#8A3BAF", path: "/typemaster" },
-  { top: "50%", left: "38%", label: "Code Relay",     content: "TEAM TYPE",     icon: "/about2/coding-relay.png", primaryColor: "#F5943A", secondaryColor: "#C8620E", path: "/code-relay" },
-  { top: "63%", left: "58%", label: "PitchDexs",     content: "CREATIVE TYPE", icon: "/about2/ui-ux.png",        primaryColor: "#F28B8B", secondaryColor: "#E05555", path: "/pitchdexs" },
+  { top: "11%", left: "45%", label: "Ideathon",       content: "STRATEGY TYPE", icon: "/pokemons/jigglypuff.svg", primaryColor: "#F28B8B", secondaryColor: "#E05555", path: "/pitchdexs" },
+  { top: "24%", left: "25%", label: "DSA Smackdown",  content: "PSYCHIC TYPE",  icon: "/pokemons/alakazam.svg",   primaryColor: "#4A9CC4", secondaryColor: "#2A6F9A", path: "/dsa-smackdown" },
+  { top: "24%", left: "78%", label: "Clash Royale",   content: "BATTLE TYPE",   icon: "/pokemons/arceus.svg",     primaryColor: "#5BBF6A", secondaryColor: "#2E8A3E", path: "/clash-royale" },
+  { top: "37%", left: "5%",  label: "Technoseek",     content: "ELECTRIC TYPE", icon: "/pokemons/zoroark.svg",    primaryColor: "#A8CC55", secondaryColor: "#72981E", path: "/technoseek" },
+  { top: "37%", left: "58%", label: "Typemaster",     content: "SPEED TYPE",    icon: "/pokemons/rayquaza.svg",   primaryColor: "#B86ED4", secondaryColor: "#8A3BAF", path: "/typemaster" },
+  { top: "50%", left: "38%", label: "Code Relay",     content: "TEAM TYPE",     icon: "/pokemons/ditto.svg",      primaryColor: "#F5943A", secondaryColor: "#C8620E", path: "/code-relay" },
+  { top: "63%", left: "58%", label: "Prompt Wars",    content: "CREATIVE TYPE", icon: "/pokemons/chatot.png",     primaryColor: "#4A8FD4", secondaryColor: "#2A6BB0", path: "/prompt-wars" },
 ];
 
 const LINES: LineData[] = [
