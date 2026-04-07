@@ -86,7 +86,7 @@ export default function Navbar() {
               alt="Catalysis"
               width={1920}
               height={1080}
-              className={`h-auto drop-shadow-md transition-all duration-300 ${isScrolled ? "w-20" : "w-24"}`}
+              className={`h-auto drop-shadow-md transition-all duration-300 ${isScrolled ? "w-28" : "w-36"}`}
               unoptimized
               priority
               quality={100}
