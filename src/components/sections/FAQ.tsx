@@ -9,17 +9,17 @@ const qna = [
   {
     question: "What is Catalysis?",
     answer:
-      "Catalysis V4.0 is a 2-day interdepartmental technical fest organised by Club Genesis, the student club of the Department of Information Science & Engineering (ISE), DSCE Bangalore.",
+      "Catalysis 4.0 is a 2-day interdepartmental technical fest organised by Club Genesis, the student club of the Department of Information Science & Engineering (ISE), DSCE Bangalore.",
   },
   {
-    question: "When and where will Catalysis V4.0 take place?",
+    question: "When and where will Catalysis 4.0 take place?",
     answer:
-      "Catalysis V4.0 will take place on April 17–18, 2026, at the Department of Information Science & Engineering, DSCE Bangalore.",
+      "Catalysis 4.0 will take place on April 17–18, 2026, at the Department of Information Science & Engineering, DSCE Bangalore.",
   },
   {
     question: "Who can participate in Catalysis?",
     answer:
-      "Catalysis V4.0 is open to all students of DSCE Bangalore. Students from all branches are welcome to participate!",
+      "Catalysis 4.0 is open to all students of DSCE Bangalore. Students from all branches are welcome to participate!",
 },
   {
     question: "What type of events can I expect?",
@@ -37,9 +37,9 @@ const qna = [
       "Yes! There is a total prize pool of over Rs. 30,000 across all events, plus trophies, merit certificates, and bragging rights.",
   },
   {
-    question: "How can I participate in Catalysis V4?",
+    question: "How can I participate in Catalysis 4.0?",
     answer:
-      "Register online through the official website using the Register Now button and secure your spot at Catalysis V4.",
+      "Register online through the official website using the Register Now button and secure your spot at Catalysis 4.0.",
   },
 ];
 

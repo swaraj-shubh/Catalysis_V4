@@ -226,7 +226,7 @@ function AboutLeft() {
 
       <div className="space-y-4 md:space-y-6 text-[#3b0a1e] dark:text-white/60 font-nunito text-[14px] md:text-[18px] leading-relaxed max-w-xl">
         <p>
-          Catalysis V4.0 is more than just an event, it&apos;s a platform built to spark
+          Catalysis 4.0 is more than just an event, it&apos;s a platform built to spark
           innovation and push ideas into reality. Organised by <strong>Club Genesis</strong> of
           the <strong>Department of Information Science &amp; Engineering, DSCE Bangalore</strong>,
           Catalysis brings together the best minds across two action-packed days of technical challenges,

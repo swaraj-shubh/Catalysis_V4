@@ -68,7 +68,7 @@ const timeline: TimelineEvent[] = [
   // All-day event for Day 1
   {
     day: 1, date: "17/04", dayLabel: "FRIDAY",
-    title: "TYPEMASTER", venue: "ROOM 205",
+    title: "TYPEMASTER", venue: "TBA",
     timeFrom: "10:00", timeTill: "16:00",
     description: "Type fast. Stay accurate. Only the swiftest survive.",
     isEvent: true, isAllDay: true, imagePath: "/pokemons/rayquaza.svg", panelColor: "#FFE4EA", hasRegister: true, slug: "typemaster",
@@ -119,7 +119,7 @@ const timeline: TimelineEvent[] = [
   // All-day event for Day 2
   {
     day: 2, date: "18/04", dayLabel: "SATURDAY",
-    title: "TYPEMASTER", venue: "ROOM 205",
+    title: "TYPEMASTER", venue: "TBA",
     timeFrom: "09:00", timeTill: "16:30",
     description: "Type fast. Stay accurate. Only the swiftest survive.",
     isEvent: true, isAllDay: true, imagePath: "/pokemons/rayquaza.svg", panelColor: "#D6F0DC", hasRegister: true, slug: "typemaster",
