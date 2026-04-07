@@ -36,7 +36,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
       const timer = setTimeout(() => {
         setPhase("done");
         onComplete();
-      }, 900);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [phase, onComplete]);
@@ -89,7 +89,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           <div
             style={{
               transform: `translate(${translateX}px, ${translateY}px) scale(0.25)`,
-              transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+              transition: "transform 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           >
             <Image

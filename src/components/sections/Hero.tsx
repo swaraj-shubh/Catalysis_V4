@@ -241,7 +241,7 @@ export default function Hero() {
         w-full max-w-[984px]
         px-4
       ">
-        Catalysis V4.0
+        Catalysis 4.0
       </h1>
 
         <p className="mt-4 md:mt-6 text-[#3b0a1e] dark:text-white/60 font-medium
@@ -250,7 +250,7 @@ export default function Hero() {
           text-[13px] sm:text-sm md:text-lg
           leading-relaxed md:leading-relaxed"
         >
-          Two days, six events, one arena. Catalysis V4.0 organised by Club Genesis, ISE Dept, DSCE Bangalore brings together coders, strategists, and creators to compete, collaborate, and rise to the top.
+          Two days, seven events, one arena. Catalysis 4.0 organised by Club Genesis, ISE Dept, DSCE Bangalore brings together coders, strategists, and creators to compete, collaborate, and rise to the top.
         </p>
       </div>
 <div className={`relative w-full max-w-6xl mt-4 md:mt-5 reveal reveal-up ${inView} reveal-delay-2`}>

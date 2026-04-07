@@ -139,7 +139,7 @@ const RulesPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           Ready to Prove Your Speed?
         </h2>
         <p className="mt-4 text-[18px] md:text-[22px] leading-[30px] font-['Nunito'] font-medium text-[#454545] dark:text-white/55 max-w-[554px]">
-          Don&apos;t miss your chance to innovate, compete, and win at Catalysis V4.0.
+          Don&apos;t miss your chance to innovate, compete, and win at Catalysis 4.0.
         </p>
         <Link 
           href="/register"
