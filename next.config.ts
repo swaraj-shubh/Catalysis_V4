@@ -11,6 +11,7 @@ const nextConfig = {
         hostname: 'docs.google.com',
       }
     ],
+    minimumCacheTTL: 2592000,
   },
 };
 

@@ -21,7 +21,6 @@ export default function TeamPage() {
 
   return (
     <div className="bg-[#FFEEF0] font-nunito text-[#1A0A0E] min-h-screen">
-      {/* ── HERO ── */}
       <section className="bg-[#FFEEF0] pt-20 pb-16 px-6 text-center relative overflow-hidden">
         <div className="inline-block bg-[#FDDF6B] text-[#1A0A0E] font-black text-xs px-4 py-1.5 rounded-full border-2 border-[#1A0A0E] mb-6 relative z-10 uppercase">
           Meet the Crew
