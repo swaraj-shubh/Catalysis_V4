@@ -40,6 +40,6 @@ export async function GET(
     });
   } catch (error) {
     console.error("Image processing error:", error);
-    return new NextResponse('Error fetching or processing image', { status: 500 });
+    return new NextResponse('Error fetching or processing image', { status: 500 })  ;
   }
 } 
