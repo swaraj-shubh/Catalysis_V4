@@ -195,7 +195,7 @@ export default function TeamPage() {
                     <div className="min-w-0">
                       <p className="font-black text-xs truncate leading-tight text-[#1A0A0E]">{m.name}</p>
                       <p className="text-[9px] font-bold text-slate-500 uppercase truncate mt-0.5">{m.role}</p>
-                      <p className="text-[9px] font-black text-[#E8192C]">{m.year}</p>
+                      
                     </div>
                   </div>
                 </div>
