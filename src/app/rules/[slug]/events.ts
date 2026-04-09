@@ -29,12 +29,12 @@ export const eventData: Record<string, EventDetails> = {
       "Exploiting game bugs is strictly forbidden"
     ],
     prizes: [
-      "🥇 1st Place: Rs. 1,000 + Certificate",
-      "🥈 2nd Place: Rs. 750 + Certificate",
-      "Total Prize Pool: Rs. 1,750"
+      "🥇 1st Place: Rs. 2,000 + Certificate",
+      "🥈 2nd Place: Rs. 1,000 + Certificate",
+      "Total Prize Pool: Rs. 3,000"
     ],
     schedule: [
-      "Date: Day 2 - Friday, 18 April",
+      "Date: Day 2 - Saturday, 18 April",
       "Time: 1:30 PM - 2:30 PM"
     ],
     requirements: [
@@ -58,12 +58,12 @@ export const eventData: Record<string, EventDetails> = {
       "Accessing external code repositories is forbidden"
     ],
     prizes: [
-      "🥇 1st Place: Rs. 1,500 + Certificate",
+      "🥇 1st Place: Rs. 2,000 + Certificate",
       "🥈 2nd Place: Rs. 1,000 + Certificate",
-      "Total Prize Pool: Rs. 2,500"
+      "Total Prize Pool: Rs. 3,000"
     ],
     schedule: [
-      "Date: Day 2 - Friday, 18 April",
+      "Date: Day 2 - Saturday, 18 April",
       "Time: 9:30 AM - 11:30 AM"
     ],
     requirements: [
@@ -88,9 +88,9 @@ export const eventData: Record<string, EventDetails> = {
       "Decisions by judges are final"
     ],
     prizes: [
-      "🥇 1st Place: Rs. 1,500 + Certificate",
+      "🥇 1st Place: Rs. 2,000 + Certificate",
       "🥈 2nd Place: Rs. 1,000 + Certificate",
-      "Total Prize Pool: Rs. 2,500"
+      "Total Prize Pool: Rs. 3,000"
     ],
     schedule: [
       "Day 1 - Friday, 17 April: 10:00 AM - 4:00 PM",
@@ -111,22 +111,22 @@ export const eventData: Record<string, EventDetails> = {
     tags: ["Ideation", "Business Model", "Presentation"],
     description: "Got the next billion-dollar idea? Present your startup pitch to our panel of judges. You will be evaluated on innovation, market feasibility, revenue model, and overall presentation skills.",
     rules: [
+      "Only Individual participation allowed",
       "Presentations must not exceed 5 minutes",
       "A 3-minute Q&A session from judges will follow",
-      "Live prototypes or Figma designs yield bonus points",
-      "All business ideas must be original"
+      "Live prototypes or Figma designs yield bonus points",      
     ],
     prizes: [
-      "🥇 Best Pitch: Rs. 1,000 + Certificate",
-      "🥈 Runner-up: Rs. 750 + Certificate",
-      "Total Prize Pool: Rs. 1,750"
+      "🥇 Best Pitch: Rs. 2,000 + Certificate",
+      "🥈 Runner-up: Rs. 1,000 + Certificate",
+      "Total Prize Pool: Rs. 3,000"
     ],
     schedule: [
       "Date: Day 1 - Friday, 17 April",
       "Time: 10:00 AM - 12:00 PM"
     ],
     requirements: [
-      "Pitch Deck (.PPT or .PDF) submitted prior to event",
+      "Pitch in ppt or pdf format",
       "Formal or Smart Casual attire",
       "Student ID proof"
     ]
@@ -146,9 +146,9 @@ export const eventData: Record<string, EventDetails> = {
       "Decisions by judges are final"
     ],
     prizes: [
-      "🥇 1st Place: Rs. 1,000 + Certificate",
-      "🥈 2nd Place: Rs. 750 + Certificate",
-      "Total Prize Pool: Rs. 1,750"
+      "🥇 1st Place: Rs. 2,000 + Certificate",
+      "🥈 2nd Place: Rs. 1,000 + Certificate",
+      "Total Prize Pool: Rs. 3,000"
     ],
     schedule: [
       "Date: Day 2 - Saturday, 18 April",
@@ -169,23 +169,23 @@ export const eventData: Record<string, EventDetails> = {
     tags: ["Scavenger Hunt", "Tech Puzzles", "Teamwork"],
     description: "Navigate through mind-bending technical puzzles and clues hidden across the campus. Combine your technical knowledge with quick thinking to be the first team to crack the final code.",
     rules: [
-      "Team of 4 members required",
+      "Team of 3 members required",
       "No outside internet assistance for offline clues",
       "Any destruction of campus property leads to disqualification",
       "Decisions by the clue-masters are final"
     ],
     prizes: [
       "🥇 1st Place Team: Rs. 5,000 + Trophy",
-      "🥈 2nd Place Team: Rs. 3,000 + Certificate",
-      "Total Prize Pool: Rs. 8,000"
+      "🥈 2nd Place Team: Rs. 2,500 + Certificate",
+      "Total Prize Pool: Rs. 7,500"
     ],
     schedule: [
-      "Date: Day 1 - Thursday, 17 April",
+      "Date: Day 1 - Friday, 17 April",
       "Time: 10:15 AM - 12:30 PM"
     ],
     requirements: [
-      "Team of exactly 4 members",
-      "At least one fully charged smartphone per team",
+      "Team of exactly 3 members",
+      "At least one smartphone per team",
       "QR Code Scanner app installed",
       "Student ID proof"
     ]
@@ -205,12 +205,12 @@ export const eventData: Record<string, EventDetails> = {
       "Code must compile to be evaluated"
     ],
     prizes: [
-      "🥇 1st Place Team: Rs. 4,000 + Trophy",
+      "🥇 1st Place Team: Rs. 5,000 + Trophy",
       "🥈 2nd Place Team: Rs. 2,500 + Certificate",
-      "Total Prize Pool: Rs. 6,500"
+      "Total Prize Pool: Rs. 7,500"
     ],
     schedule: [
-      "Date: Day 1 - Thursday, 17 April",
+      "Date: Day 1 - Friday, 17 April",
       "Time: 1:30 PM - 3:30 PM"
     ],
     requirements: [
