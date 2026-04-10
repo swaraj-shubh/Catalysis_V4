@@ -140,7 +140,7 @@ export default function RegisterPage() {
           <div className="text-6xl mb-6">🎉</div>
           <h1 className="font-gliker text-4xl text-[#dd273e] mb-4" style={{ fontWeight: 900 }}>Trainer Registered!</h1>
           <p className="font-nunito font-bold text-gray-700 dark:text-white/60 mb-6">
-            Registration successful. Your details have been recorded. See you at the battleground!
+            Registration successful. Your details have been recorded. See you at the battleground! Check your mail for Event Rules.
           </p>
           <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-500/40 rounded-2xl p-4 mb-8">
             <p className="font-nunito font-bold text-gray-700 dark:text-white/70 text-sm mb-3">

@@ -41,7 +41,8 @@ export const sendRegistrationEmail = async ({ to, name, eventName, teamName }: E
           </p>
 
           <div style="background-color: #fdf3d7; border: 2px solid #000000; border-radius: 12px; padding: 15px; margin: 25px 0; text-align: left;">
-            <p style="margin: 0 0 10px 0; font-size: 14px;"><strong>⚔️ BATTLEGROUND:</strong> <span style="color: ${themeRed}; font-weight: bold;">${eventName}</span></p>
+            <p style="margin: 0 0 10px 0; font-size: 14px;"><strong>⚔️ BATTLEGROUND:</strong> <span style="color: ${themeRed}; font-weight: bold;">ISE Department, Building No 19</span></p>
+            <p style="margin: 0 0 10px 0; font-size: 14px;"><strong>🎫 EVENT YOU REGISTERED:</strong> <span style="color: ${themeRed}; font-weight: bold;">${eventName}</span></p>
             ${teamName ? `<p style="margin: 0; font-size: 14px;"><strong>🛡️ TEAM:</strong> ${teamName}</p>` : ''}
           </div>
 
@@ -56,15 +57,8 @@ export const sendRegistrationEmail = async ({ to, name, eventName, teamName }: E
           <p style="font-size: 16px; font-weight: bold; margin-bottom: 0;">
             See you at the battleground!
           </p>
-
-          <a href="https://chat.whatsapp.com/K814lnQORHWIQ9KvggySGF"
-            target="_blank"
-            style="display: inline-block; background-color: #25D366; color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 900; padding: 12px 24px; border-radius: 50px; border: 2px solid #000000; letter-spacing: 1px;">
-            📢 Join Community for Updates
-          </a>
-
           <p style="font-size: 12px; color: #999999; margin-top: 12px;">
-            Find the event rulebook attached below.
+            You can find the rules for your event in the attached RuleBook.
           </p>
         </div>
       </div>
