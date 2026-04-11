@@ -41,6 +41,7 @@ interface FieldErrorState {
   usn?: string;
   email?: string;
   phone?: string;
+  branch?: string;
 }
 
 const BLANK_MEMBER: MemberData = { name: "", usn: "", email: "", phone: "", semester: "", branch: "" };
@@ -53,7 +54,11 @@ const getFieldError = (field: keyof MemberData, value: string) => {
     case "name":
       return /^[a-zA-Z\s]{3,50}$/.test(value) ? "" : "Letters only (min 3 chars)";
     case "usn":
-      return /^[a-zA-Z0-9]{10,20}$/.test(value) ? "" : "Invalid USN format (10+ chars)";
+      // return /^[a-zA-Z0-9]{10,20}$/.test(value) ? "" : "Invalid USN format (10+ chars)";
+      // return /^1ds2[0-5][a-zA-Z]{2}(?!000)\d{3}$/i.test(value)
+      return /^1ds\d{2}[a-zA-Z]{2}(?!000)\d{3}$/i.test(value)
+        ? "" 
+        : "Must be a valid DSCE USN (e.g., 1DS24CS001)";
     case "email":
       return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(value) ? "" : "Must be a valid @gmail.com address";
     case "phone":
@@ -82,16 +87,63 @@ export default function RegisterPage() {
   const isTeam = selectedEvent !== "" && TEAM_EVENT_IDS.includes(selectedEvent as EventId);
 
   const updateMember = (index: 0 | 1 | 2, field: keyof MemberData, value: string) => {
-    const error = getFieldError(field, value);
+    // 1. Create the intended new state for this member
+    const updatedMember = { ...members[index], [field]: value };
+
+    // --- AUTO-DETECT BRANCH LOGIC ---
+    if (field === "usn" && value.length >= 7) {
+      const extractedCode = value.substring(5, 7).toLowerCase();
+      const matchedBranch = BRANCHES.find((b) => b.code === extractedCode);
+      if (matchedBranch) {
+        updatedMember.branch = matchedBranch.value;
+      }
+    }
+
+    // 2. Perform Cross-Validations
+    let usnError = getFieldError("usn", updatedMember.usn);
+    let branchError = "";
+
+    // Only run deep validation if the USN format is basically correct (10 chars)
+    if (!usnError && updatedMember.usn.length === 10) {
+      const usnYearString = updatedMember.usn.substring(3, 5);
+      const usnYearNum = parseInt(usnYearString, 10);
+      const usnBranchCode = updatedMember.usn.substring(5, 7).toLowerCase();
+      const isValidUSNBranchCode = BRANCHES.some((b) => b.code === usnBranchCode);
+
+      // Check Year Range (20 to 25)
+      if (usnYearNum < 20 || usnYearNum > 25) {
+         usnError = `Invalid USN: Year must be between 20 and 25 (You entered ${usnYearString}).`;
+      } 
+      // Check Branch Code Validity
+      else if (!isValidUSNBranchCode) {
+        usnError = `Invalid USN: '${usnBranchCode.toUpperCase()}' is not a recognized branch code.`;
+      } 
+      // Check Dropdown Mismatch
+      else if (updatedMember.branch) {
+        const selectedBranchObj = BRANCHES.find((b) => b.value === updatedMember.branch);
+        if (selectedBranchObj && selectedBranchObj.code !== usnBranchCode) {
+          branchError = "Mismatch: Selected branch does not match the USN.";
+        }
+      }
+    }
+
+    // 3. Update the Errors state
     setErrors((prev) => {
       const next = [...prev];
-      next[index] = { ...next[index], [field]: error };
+      const basicError = getFieldError(field as keyof MemberData, value);
+      next[index] = {
+        ...next[index],
+        [field]: basicError,
+        usn: field === "usn" || field === "branch" ? usnError : next[index].usn,
+        branch: branchError,
+      };
       return next;
     });
 
+    // 4. Update the Members state
     setMembers((prev) => {
       const next = [...prev] as [MemberData, MemberData, MemberData];
-      next[index] = { ...next[index], [field]: value };
+      next[index] = updatedMember;
       return next;
     });
   };
@@ -242,8 +294,8 @@ export default function RegisterPage() {
             <div className="space-y-8">
               <Section title="ACADEMIC DETAILS" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                <SelectField label="Semester" placeholder="Select semester" value={members[0].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v: string) => updateMember(0, "semester", v)} />
-                <BranchSelectField label="Branch" placeholder="Select branch" value={members[0].branch} onChange={(v) => updateMember(0, "branch", v)} />
+                <SelectField label="Semester" placeholder="Select semester" value={members[0].semester} options={["2","4","6","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v: string) => updateMember(0, "semester", v)} />
+                <BranchSelectField label="Branch" placeholder="Select branch" value={members[0].branch} error={errors[0]?.branch} onChange={(v) => updateMember(0, "branch", v)} />
               </div>
             </div>
 
@@ -253,16 +305,16 @@ export default function RegisterPage() {
                   <Section title="MEMBER 2 DETAILS" />
                   <MemberForm member={members[1]} errors={errors[1]} index={1} label="Member 2" onChange={updateMember} showLabel />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                    <SelectField label="Semester" placeholder="Select semester" value={members[1].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(1, "semester", v)} />
-                    <BranchSelectField label="Branch" placeholder="Select branch" value={members[1].branch} onChange={(v) => updateMember(1, "branch", v)} />
+                    <SelectField label="Semester" placeholder="Select semester" value={members[1].semester} options={["2","4","6","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(1, "semester", v)} />
+                    <BranchSelectField label="Branch" placeholder="Select branch" value={members[1].branch} error={errors[1]?.branch} onChange={(v) => updateMember(1, "branch", v)} />
                   </div>
                 </div>
                 <div className="space-y-8">
                   <Section title="MEMBER 3 DETAILS" />
                   <MemberForm member={members[2]} errors={errors[2]} index={2} label="Member 3" onChange={updateMember} showLabel />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                    <SelectField label="Semester" placeholder="Select semester" value={members[2].semester} options={["1","2","3","4","5","6","7","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(2, "semester", v)} />
-                    <BranchSelectField label="Branch" placeholder="Select branch" value={members[2].branch} onChange={(v) => updateMember(2, "branch", v)} />
+                    <SelectField label="Semester" placeholder="Select semester" value={members[2].semester} options={["2","4","6","8"].map((o) => ({ value: o, label: `Semester ${o}` }))} onChange={(v) => updateMember(2, "semester", v)} />
+                    <BranchSelectField label="Branch" placeholder="Select branch" value={members[2].branch} error={errors[2]?.branch} onChange={(v) => updateMember(2, "branch", v)} />
                   </div>
                 </div>
               </>
@@ -343,7 +395,7 @@ function InputField({ label, placeholder, value, error, onChange, required, type
           <p className="text-yellow-300 text-[10px] font-bold uppercase italic tracking-wider animate-pulse">⚠️ {error}</p>
         ) : (
           <p className="text-white/20 text-[9px] font-bold uppercase tracking-widest">
-            {label === "Phone" ? "Starts with 6-9" : label === "USN" ? "Alphanumeric" : label === "Email" ? "Ends with @gmail.com" : ""}
+            {label === "Phone" ? "Starts with 6-9" : label === "USN" ? "Format: 1DS24CS001" : label === "Email" ? "Ends with @gmail.com" : ""}
           </p>
         )}
       </div>
@@ -376,18 +428,23 @@ function SelectField({ label, placeholder, value, options, onChange }: SelectFie
   );
 }
 
-function BranchSelectField({ label, placeholder, value, onChange }: Omit<SelectFieldProps, "options">) {
+function BranchSelectField({ label, placeholder, value, onChange, error }: Omit<SelectFieldProps, "options"> & { error?: string }) {
   return (
     <div className="flex flex-col gap-2">
       <label className="text-white ml-2 font-semibold text-base" style={{ fontFamily: "'Gliker','Fredoka One',cursive" }}>{label}</label>
       <div className="relative">
-        <select required value={value} onChange={(e) => onChange(e.target.value)} className="w-full px-5 py-3.5 rounded-full border-2 border-black bg-white text-black text-sm outline-none appearance-none cursor-pointer">
+        <select required value={value} onChange={(e) => onChange(e.target.value)} className={`w-full px-5 py-3.5 rounded-full border-2 border-black bg-white text-black text-sm outline-none appearance-none cursor-pointer transition-all ${error ? 'ring-4 ring-yellow-400' : 'focus:ring-2 focus:ring-white/40'}`}>
           <option value="">{placeholder}</option>
           {BRANCHES.map((b) => <option key={b.value} value={b.value}>{b.label}</option>)}
         </select>
         <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2">
           <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1L7 7L13 1" stroke="#dd273e" strokeWidth="2.5" strokeLinecap="round" /></svg>
         </div>
+      </div>
+      <div className="min-h-[16px] ml-4">
+        {error && (
+          <p className="text-yellow-300 text-[10px] font-bold uppercase italic tracking-wider animate-pulse">⚠️ {error}</p>
+        )}
       </div>
     </div>
   );
