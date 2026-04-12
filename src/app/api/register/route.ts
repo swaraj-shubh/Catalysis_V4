@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnect";
 import Participant, { TEAM_EVENTS } from "@/models/Participant";
+import { registrationRateLimiter } from "@/lib/simpleRateLimit";
 
 //emailServiceCode - Import the service and create a mapping for readable event names
 import { sendRegistrationEmail } from "@/lib/emailService";
@@ -18,6 +19,29 @@ const EVENT_NAMES: Record<string, string> = {
 //emailServiceCode
 
 export async function POST(req: Request) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "unknown";
+  
+  const rateLimit = registrationRateLimiter.check(ip);
+  
+  if (!rateLimit.allowed) {
+    const waitTime = Math.ceil((rateLimit.resetTime - Date.now()) / 1000);
+    return NextResponse.json(
+      { 
+        error: `Too many registration attempts. Please try again in ${waitTime} seconds.`,
+        retryAfter: waitTime
+      },
+      { 
+        status: 429,
+        headers: {
+          'Retry-After': waitTime.toString(),
+          'X-RateLimit-Limit': '5',
+          'X-RateLimit-Remaining': '0',
+          'X-RateLimit-Reset': rateLimit.resetTime.toString()
+        }
+      }
+    );
+  }
+
   try {
     await dbConnect();
     const body = await req.json();
