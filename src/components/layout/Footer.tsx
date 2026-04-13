@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 export default function Footer() {
   const pathname = usePathname();
   if (pathname?.startsWith("/admin")) return null;
+  if (pathname?.startsWith("/helpdesk")) return null;
+
 
   return (
     <footer id="footer" className="relative w-full">

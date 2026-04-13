@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSession } from "@/lib/session";
+import { getHelpdeskSession } from "@/lib/helpdeskSession";
 import { dbConnect } from "@/lib/dbConnect";
 import Participant, { TEAM_EVENTS } from "@/models/Participant";
 import { sendRegistrationEmail } from "@/lib/emailService";
@@ -15,16 +15,18 @@ const EVENT_NAMES: Record<string, string> = {
 };
 
 export async function POST(req: Request) {
-  const session = await getSession();
+  // Helpdesk authentication (separate from admin)
+  const session = await getHelpdeskSession();
   if (!session) {
-    return NextResponse.json({ error: "Unauthorized. Admin access required." }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized. Helpdesk access required." }, { status: 401 });
   }
-  
+
   try {
     await dbConnect();
     const body = await req.json();
     const { event, team_name, member1, member2, member3 } = body;
 
+    // Validation logic (same as public register)
     if (!event || !member1?.usn) {
       return NextResponse.json({ error: "Lead member USN is required." }, { status: 400 });
     }
@@ -38,17 +40,17 @@ export async function POST(req: Request) {
     const uniqueUsnsInRequest = new Set(activeUsns);
     if (uniqueUsnsInRequest.size !== activeUsns.length) {
       return NextResponse.json({
-        error: "Duplicate USNs detected in the same team."
+        error: "Duplicate USNs detected in the same team. Each member must be unique."
       }, { status: 400 });
     }
 
-    const isTeam = TEAM_EVENTS.includes(event);
+    const isTeam = TEAM_EVENTS.includes(event as any);
     if (isTeam) {
       if (!team_name || team_name.trim().length < 2) {
         return NextResponse.json({ error: "Team name is required for team events." }, { status: 400 });
       }
       if (activeUsns.length < 2) {
-        return NextResponse.json({ error: "Team events require at least two participants." }, { status: 400 });
+        return NextResponse.json({ error: "Team events require at least two unique participants." }, { status: 400 });
       }
     }
 
@@ -95,6 +97,7 @@ export async function POST(req: Request) {
       member3: sanitizedMember3,
     });
 
+    // Send email (don't await)
     try {
       const readableEventName = EVENT_NAMES[event] || event;
       if (sanitizedMember1?.email) {
@@ -112,7 +115,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Registration successful!" }, { status: 201 });
 
   } catch (error) {
-    console.error("Internal API Error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error("Helpdesk API Error:", error);
+    return NextResponse.json({ error: "Internal Server Error. Please contact support." }, { status: 500 });
   }
 }
