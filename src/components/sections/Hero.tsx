@@ -263,6 +263,14 @@ export default function Hero() {
           leading-relaxed md:leading-relaxed"
         >
           Two days, seven events, one arena. Catalysis 4.0 organised by Club Genesis, ISE Dept, DSCE Bangalore brings together coders, strategists, and creators to compete, collaborate, and rise to the top.
+          </p>
+        <p className="mt-4 md:mt-6 text-[#DD273E] dark:text-white/60 font-medium
+          max-w-[80%] sm:max-w-md md:max-w-3xl
+          mx-auto
+          text-[13px] sm:text-sm md:text-lg
+          leading-relaxed md:leading-relaxed"
+        >
+          <span className="font-black text-[15px] sm:text-base md:text-xl">CLASH ROYALE REGISTRATIONS ARE NOW CLOSED!</span> <span className="font-semibold">Please register for other exciting events.</span> <span className="text-[#22c55e] dark:text-[#4ade80] font-bold">On-spot registrations will be available on the day of the fest!</span>
         </p>
       </div>
 <div className={`relative w-full max-w-6xl mt-4 md:mt-5 reveal reveal-up ${inView} reveal-delay-2`}>
